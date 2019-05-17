@@ -9,10 +9,20 @@ public class SpriteRenderer extends Script {
 
     private double width, height;
 
+    /**
+     * Makes a new SpriteRenderer.
+     * @param image Image to draw.
+     */
     public SpriteRenderer(Image image) {
         this.image = image;
     }
 
+    /**
+     * Makes a new SpriteRenderer
+     * @param image Image to draw.
+     * @param width Overrided height to draw image.
+     * @param height Overrided width to draw image.
+     */
     public SpriteRenderer(Image image, double width, double height) {
         this.image = image;
         this.width = width;
