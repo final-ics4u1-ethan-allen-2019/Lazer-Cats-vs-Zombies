@@ -90,6 +90,7 @@ public class Game extends Application {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         graphics = gc;
+        Draw.init(graphics);
 
         primaryStage.show();
     }
