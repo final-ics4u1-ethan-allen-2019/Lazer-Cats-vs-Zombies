@@ -47,4 +47,8 @@ public class Draw {
         graphics.fillText(text, x, y);
     }
 
+    public static void clear() {
+        graphics.fillRect(0,0, Game.getWidth(), Game.getHeight());
+    }
+
 }

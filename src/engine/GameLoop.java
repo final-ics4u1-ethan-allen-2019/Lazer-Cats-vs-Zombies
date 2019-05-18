@@ -8,6 +8,8 @@ public class GameLoop extends AnimationTimer {
     public void handle(long now) {
         Time.updateTime(now);
 
+        Draw.clear();
+
         // Scene update
 
         // Scene draw

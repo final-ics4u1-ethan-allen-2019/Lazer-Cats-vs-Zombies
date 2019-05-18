@@ -72,6 +72,14 @@ public class Game extends Application {
         launch(args);
     }
 
+    public static double getWidth() {
+        return width;
+    }
+
+    public static double getHeight() {
+        return height;
+    }
+
     @Override
     public void start(Stage primaryStage) {
         Game.primaryStage = primaryStage;
@@ -91,6 +99,8 @@ public class Game extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         graphics = gc;
         Draw.init(graphics);
+
+        new GameLoop().start();
 
         primaryStage.show();
     }
