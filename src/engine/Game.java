@@ -5,15 +5,12 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 public class Game extends Application {
 
     private static Scene scene;
     private static Stage primaryStage;
-
-    protected static GraphicsContext graphics;
 
     private static double width, height;
     private static String title;
@@ -72,10 +69,18 @@ public class Game extends Application {
         launch(args);
     }
 
+    /**
+     * Get the width of the window.
+     * @return the width of the window.
+     */
     public static double getWidth() {
         return width;
     }
 
+    /**
+     * Get the height of the window
+     * @return the height of the window.
+     */
     public static double getHeight() {
         return height;
     }
@@ -96,9 +101,7 @@ public class Game extends Application {
         scene.setOnKeyReleased(input);
         primaryStage.setScene(scene);
 
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        graphics = gc;
-        Draw.init(graphics);
+        Draw.init(canvas.getGraphicsContext2D());
 
         new GameLoop().start();
 

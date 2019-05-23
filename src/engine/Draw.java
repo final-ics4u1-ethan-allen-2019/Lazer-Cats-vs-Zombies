@@ -48,7 +48,7 @@ public class Draw {
     }
 
     public static void clear() {
-        graphics.fillRect(0,0, Game.getWidth(), Game.getHeight());
+        graphics.clearRect(0,0, Game.getWidth(), Game.getHeight());
     }
 
 }
