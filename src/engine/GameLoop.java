@@ -1,5 +1,7 @@
 package engine;
 
+import engine.scenes.GameScene;
+import engine.scenes.SceneManager;
 import javafx.animation.AnimationTimer;
 
 public class GameLoop extends AnimationTimer {
@@ -10,10 +12,15 @@ public class GameLoop extends AnimationTimer {
 
         Draw.clear();
 
-        // Scene update
+        GameScene scene = SceneManager.getCurrentGameScene();
 
-        // Scene draw
+        if (scene != null) {
+            // Scene update
+            scene.update();
 
+            // Scene draw
+            scene.render();
+        }
     }
 
 }
