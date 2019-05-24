@@ -1,6 +1,7 @@
 package engine;
 
 import engine.input.KeyboardInput;
+import engine.input.MouseInput;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -96,9 +97,14 @@ public class Game extends Application {
         root.getChildren().add(canvas);
 
         scene = new Scene(root);
-        KeyboardInput input = new KeyboardInput();
-        scene.setOnKeyPressed(input);
-        scene.setOnKeyReleased(input);
+        KeyboardInput keyboardInput = new KeyboardInput();
+        scene.setOnKeyPressed(keyboardInput);
+        scene.setOnKeyReleased(keyboardInput);
+        MouseInput mouseInput = new MouseInput();
+        scene.setOnMouseMoved(mouseInput);
+        scene.setOnMouseDragged(mouseInput);
+        scene.setOnMousePressed(mouseInput);
+        scene.setOnMouseReleased(mouseInput);
         primaryStage.setScene(scene);
 
         Draw.init(canvas.getGraphicsContext2D());
