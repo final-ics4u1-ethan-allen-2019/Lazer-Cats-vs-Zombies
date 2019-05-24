@@ -11,7 +11,15 @@ public class Main extends Game {
 
     public static void main(String[] args) {
         ArrayList<GameObject> objects = new ArrayList<>();
-        objects.add(new Entity());
+
+        GameObject object = new GameObject();
+
+        object.x = 400;
+        object.y = 400;
+
+        object.addScript(new CharacterMovement());
+
+        objects.add(object);
 
         GameScene scene = new GameScene(objects);
 

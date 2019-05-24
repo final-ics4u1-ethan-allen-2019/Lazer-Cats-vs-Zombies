@@ -111,6 +111,8 @@ public class Game extends Application {
 
         new GameLoop().start();
 
+        primaryStage.setResizable(false);
+
         primaryStage.show();
     }
 

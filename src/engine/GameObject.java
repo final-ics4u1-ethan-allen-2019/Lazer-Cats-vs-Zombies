@@ -32,6 +32,7 @@ public class GameObject {
     }
 
     public void addScript(Script script) {
+        script.setParent(this);
         scripts.add(script);
     }
 
