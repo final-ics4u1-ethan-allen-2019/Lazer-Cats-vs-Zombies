@@ -1,6 +1,7 @@
 package engine.scenes;
 
 import engine.GameObject;
+import engine.mapping.Map;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,8 @@ public class GameScene {
     private ArrayList<GameObject> inactive;
 
     private ArrayList<GameObject> active;
+
+    private ArrayList<Map> maps;
 
     public GameScene(ArrayList<GameObject> objects) {
         inactive = objects;
