@@ -28,6 +28,8 @@ public class Game extends Application {
         Game.height = height;
         Game.title = title;
 
+        this.load();
+
         launch(args);
     }
 
@@ -84,6 +86,10 @@ public class Game extends Application {
      */
     public static double getHeight() {
         return height;
+    }
+
+    public void load() {
+
     }
 
     @Override

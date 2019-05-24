@@ -34,4 +34,8 @@ public class GameScene {
         }
     }
 
+    public void spawnObject(GameObject object) {
+        active.add(object);
+    }
+
 }

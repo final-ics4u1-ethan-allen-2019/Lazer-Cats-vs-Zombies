@@ -15,6 +15,8 @@ public class SpriteRenderer extends Script {
      */
     public SpriteRenderer(Image image) {
         this.image = image;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
     }
 
     /**
@@ -31,8 +33,7 @@ public class SpriteRenderer extends Script {
 
     @Override
     public void render() {
-        if (this.height == 0) Draw.drawImage(image, parent.x, parent.y);
-        else Draw.drawImage(image, parent.x, parent.y, width, height);
+        Draw.drawImage(image, parent.x, parent.y, width, height);
     }
 
 }
