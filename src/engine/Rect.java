@@ -1,12 +1,14 @@
 package engine;
 
+import engine.math.Vector2;
+
 public class Rect {
 
-    private double x;
-    private double y;
-    private double width;
-    private double length;
-    private double[][] rect;
+    public double x;
+    public double y;
+    public double width;
+    public double length;
+    public Vector2[] rect;
     /*
     double[][] rect works like this
     [0] = point 1
@@ -23,7 +25,7 @@ public class Rect {
         y = 0;
         width = 0;
         length = 0;
-        rect = new double[2][2];
+        rect = new Vector2[2];
         updateRect();
     }
 
@@ -32,14 +34,23 @@ public class Rect {
         this.y = y;
         this.width = width;
         this.length = length;
-        rect = new double[2][2];
+        rect = new Vector2[2];
+        updateRect();
+    }
+
+    public Rect(Vector2 p1, Vector2 p2){
+        this.x = p1.x;
+        this.y = p1.y;
+        this.width = p2.x;
+        this.length = p2.y;
+        rect = new Vector2[2];
         updateRect();
     }
 
     public void updateRect(){
-        rect[0][0] = x;
-        rect[0][1] = y;
-        rect[1][0] = x + width;
-        rect[1][1] = y + length;
+        rect[0].x = x;
+        rect[0].y = y;
+        rect[1].x = x + width;
+        rect[1].y = y + length;
     }
 }
