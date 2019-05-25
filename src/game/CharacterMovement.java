@@ -5,9 +5,10 @@ import engine.Game;
 import engine.Time;
 import engine.input.MouseInput;
 import engine.math.Vector2;
+import engine.scripts.Parent;
 import engine.scripts.Script;
 
-public class CharacterMovement extends Script {
+public class CharacterMovement extends Parent implements Script {
 
     Vector2 velocity = new Vector2();
 
@@ -62,7 +63,6 @@ public class CharacterMovement extends Script {
         }
     }
 
-    @Override
     public void render() {
         Draw.ellipse(parent.x-20, parent.y-20, 40, 40);
     }

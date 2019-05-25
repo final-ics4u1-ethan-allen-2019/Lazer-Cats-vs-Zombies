@@ -1,9 +1,11 @@
 package engine.scripts;
 
 import engine.Draw;
+import engine.GameObject;
 import javafx.scene.image.Image;
 
-public class SpriteRenderer extends Script {
+public class SpriteRenderer extends Parent implements Script {
+
 
     private Image image;
 
@@ -31,9 +33,12 @@ public class SpriteRenderer extends Script {
         this.height = height;
     }
 
-    @Override
     public void render() {
         Draw.drawImage(image, parent.x, parent.y, width, height);
     }
 
+
+    public void update() {
+
+    }
 }

@@ -4,6 +4,7 @@ import engine.scripts.Script;
 
 import java.util.ArrayList;
 
+//MAIN ISSUE WITH INTERFACING
 public class GameObject {
 
     protected ArrayList<Script> scripts;
@@ -31,9 +32,9 @@ public class GameObject {
         }
     }
 
-    public void addScript(Script script) {
-        script.setParent(this);
-        scripts.add(script);
+    public void addScript(Parent parent) {
+        parent.setParent(this);
+        scripts.add(parent);
     }
 
 }

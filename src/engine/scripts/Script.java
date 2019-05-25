@@ -2,24 +2,10 @@ package engine.scripts;
 
 import engine.GameObject;
 
-public class Script {
+public interface Script {
 
-    protected GameObject parent;
+    void render();
 
-    public Script() {
-
-    }
-
-    public void setParent(GameObject parent) {
-        this.parent = parent;
-    }
-
-    public void render() {
-
-    }
-
-    public void update() {
-
-    }
+    void update();
 
 }
