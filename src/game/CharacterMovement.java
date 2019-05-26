@@ -6,6 +6,8 @@ import engine.Time;
 import engine.input.MouseInput;
 import engine.math.Vector2;
 import engine.scripts.Script;
+import images.TextureClassifier;
+import javafx.scene.image.Image;
 
 public class CharacterMovement extends Script {
 
@@ -14,6 +16,8 @@ public class CharacterMovement extends Script {
     boolean holding = false;
 
     double px, py;
+
+    TextureClassifier.textures tex = TextureClassifier.textures.GOTTEM;
 
     @Override
     public void update() {
@@ -64,6 +68,6 @@ public class CharacterMovement extends Script {
 
     @Override
     public void render() {
-        Draw.ellipse(parent.x-20, parent.y-20, 40, 40);
+        Draw.drawImage(new Image(tex.getUrl()),parent.x-20, parent.y-20, 40, 40);
     }
 }
