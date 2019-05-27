@@ -9,6 +9,8 @@ import engine.scripts.Script;
 import game.images.TextureClassifier;
 import javafx.scene.image.Image;
 
+import static game.images.TextureClassifier.textures.GOTTEM;
+
 public class CharacterMovement extends Script {
 
     Vector2 velocity = new Vector2();
@@ -16,8 +18,6 @@ public class CharacterMovement extends Script {
     boolean holding = false;
 
     double px, py;
-
-    TextureClassifier.textures tex = TextureClassifier.textures.GOTTEM;
 
     @Override
     public void update() {
@@ -48,19 +48,19 @@ public class CharacterMovement extends Script {
         px = MouseInput.x;
         py = MouseInput.y;
         if (parent.x-20 < 0) {
-            velocity.x *= -0.9;
+            velocity.x *= -0.1;
             parent.x = 20;
         } else if (parent.x+20 > Game.getWidth()) {
-            velocity.x *= -0.9;
+            velocity.x *= -0.1;
             parent.x = Game.getWidth()-20;
         }
 
         if (parent.y-20 < 0) {
-            velocity.y *= -0.9;
+            velocity.y *= -0.1;
             velocity.x *= 0.9;
             parent.y = 20;
         } else if (parent.y+20 > Game.getHeight()) {
-            velocity.y *= -0.9;
+            velocity.y *= -0.1;
             velocity.x *= 0.9;
             parent.y = Game.getHeight()-20;
         }
@@ -68,6 +68,6 @@ public class CharacterMovement extends Script {
 
     @Override
     public void render() {
-        Draw.drawImage(new Image(tex.getUrl()),parent.x-20, parent.y-20, 40, 40);
+        Draw.drawImage(new Image(GOTTEM.getUrl()),parent.x-20, parent.y-20, 40, 40);
     }
 }
