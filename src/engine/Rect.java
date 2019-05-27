@@ -8,7 +8,7 @@ public class Rect {
     public double y;
     public double width;
     public double length;
-    public Vector2[] rect;
+    private Vector2[] rect;
     /*
     double[][] rect works like this
     [0] = point 1
@@ -47,10 +47,15 @@ public class Rect {
         updateRect();
     }
 
-    public void updateRect(){
+    private void updateRect(){
         rect[0].x = x;
         rect[0].y = y;
         rect[1].x = x + width;
         rect[1].y = y + length;
+    }
+
+    public Vector2[] getRect() {
+        updateRect();
+        return rect;
     }
 }
