@@ -9,6 +9,7 @@ public class TextureClassifier {
 
         GOTTEM (0, "images/GOTCHA.jpg");
 
+
         private final int id;
         private final String url;
         textures(int id, String url){
