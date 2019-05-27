@@ -1,5 +1,8 @@
 package engine;
 
+import engine.math.Vector2;
+import engine.scenes.GameScene;
+import engine.scenes.SceneManager;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Paint;
@@ -27,24 +30,44 @@ public class Draw {
         graphics.setFill(paint);
     }
 
+    public static void ellipse(double x, double y, double width, double height, boolean ui) {
+        Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        graphics.fillOval(x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0), width, height);
+    }
+
     public static void ellipse(double x, double y, double width, double height) {
-        graphics.fillOval(x, y, width, height);
+        ellipse(x, y, width, height,false);
+    }
+
+    public static void rect(double x, double y, double width, double height, boolean ui) {
+        Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        graphics.fillRect(x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0), width, height);
     }
 
     public static void rect(double x, double y, double width, double height) {
-        graphics.fillRect(x, y, width, height);
+        rect(x, y, width, height,false);
+    }
+
+    public static void drawImage(Image image, double x, double y, double width, double height, boolean ui) {
+        Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        graphics.drawImage(image, x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0), width, height);
     }
 
     public static void drawImage(Image image, double x, double y, double width, double height) {
-        graphics.drawImage(image, x, y, width, height);
+        drawImage(image, x, y, width, height,false);
     }
 
     public static void drawImage(Image image, double x, double y) {
-        graphics.drawImage(image, x, y, image.getWidth(), image.getWidth());
+        drawImage(image, x, y, image.getWidth(), image.getWidth(),false);
+    }
+
+    public static void drawText(String text, double x, double y, boolean ui) {
+        Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        graphics.fillText(text, x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0));
     }
 
     public static void drawText(String text, double x, double y) {
-        graphics.fillText(text, x, y);
+        drawText(text, x, y,false);
     }
 
     public static void clear() {

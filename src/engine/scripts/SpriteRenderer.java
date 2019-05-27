@@ -1,6 +1,7 @@
 package engine.scripts;
 
 import engine.Draw;
+import engine.math.Vector2;
 import javafx.scene.image.Image;
 
 public class SpriteRenderer extends Script {
@@ -8,6 +9,8 @@ public class SpriteRenderer extends Script {
     private Image image;
 
     private double width, height;
+
+    private Vector2 offset;
 
     /**
      * Makes a new SpriteRenderer.
@@ -31,9 +34,14 @@ public class SpriteRenderer extends Script {
         this.height = height;
     }
 
+    public SpriteRenderer setOffset(Vector2 offset) {
+        this.offset = offset.copy();
+        return this;
+    }
+
     @Override
     public void render() {
-        Draw.drawImage(image, parent.x, parent.y, width, height);
+        Draw.drawImage(image, parent.x+offset.x, parent.y+offset.y, width, height);
     }
 
 }

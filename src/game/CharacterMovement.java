@@ -5,11 +5,8 @@ import engine.Game;
 import engine.Time;
 import engine.input.MouseInput;
 import engine.math.Vector2;
+import engine.scenes.SceneManager;
 import engine.scripts.Script;
-import game.images.TextureClassifier;
-import javafx.scene.image.Image;
-
-import static game.images.TextureClassifier.textures.GOTTEM;
 
 public class CharacterMovement extends Script {
 
@@ -48,26 +45,29 @@ public class CharacterMovement extends Script {
         px = MouseInput.x;
         py = MouseInput.y;
         if (parent.x-20 < 0) {
-            velocity.x *= -0.1;
+            velocity.x *= -0.9;
             parent.x = 20;
         } else if (parent.x+20 > Game.getWidth()) {
-            velocity.x *= -0.1;
+            velocity.x *= -0.9;
             parent.x = Game.getWidth()-20;
         }
 
         if (parent.y-20 < 0) {
-            velocity.y *= -0.1;
+            velocity.y *= -0.9;
             velocity.x *= 0.9;
             parent.y = 20;
         } else if (parent.y+20 > Game.getHeight()) {
-            velocity.y *= -0.1;
+            velocity.y *= -0.9;
             velocity.x *= 0.9;
             parent.y = Game.getHeight()-20;
         }
+
+        SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-20-(Game.getWidth()/2), parent.y-20-(Game.getHeight()/2));
     }
 
     @Override
     public void render() {
-        Draw.drawImage(new Image(GOTTEM.getUrl()),parent.x-20, parent.y-20, 40, 40);
+        Draw.drawText(parent.x + "", 0, 20, true);
+        Draw.drawText(parent.y + "", 0, 40, true);
     }
 }

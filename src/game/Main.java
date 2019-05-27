@@ -2,12 +2,15 @@ package game;
 
 import engine.Game;
 import engine.GameObject;
+import engine.math.Vector2;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import engine.scripts.SpriteRenderer;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+
+import static game.images.TextureClassifier.textures.GOTTEM;
 
 public class Main extends Game {
 
@@ -21,7 +24,13 @@ public class Main extends Game {
         object.y = 400;
 
         object.addScript(new CharacterMovement());
-        //object.addScript(new SpriteRenderer(new Image(getClass().getResource("GOTCHA copy.jpg").toString()), 21*2, 24*2));
+        object.addScript(new SpriteRenderer(new Image(GOTTEM.getUrl()), 40, 40).setOffset(new Vector2(-20, -20)));
+
+        objects.add(object);
+
+        object = new GameObject();
+
+        object.addScript(new Borders());
 
         objects.add(object);
 
