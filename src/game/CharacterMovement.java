@@ -6,7 +6,7 @@ import engine.Time;
 import engine.input.MouseInput;
 import engine.math.Vector2;
 import engine.scripts.Script;
-import images.TextureClassifier;
+import game.images.TextureClassifier;
 import javafx.scene.image.Image;
 
 public class CharacterMovement extends Script {

@@ -1,13 +1,10 @@
-package images;
-
-import java.net.URL;
-import java.util.ArrayList;
+package game.images;
 
 public class TextureClassifier {
 
     public enum textures{
 
-        GOTTEM (0, "images/GOTCHA.jpg");
+        GOTTEM (0, "game/images/GOTCHA.jpg");
 
 
         private final int id;
