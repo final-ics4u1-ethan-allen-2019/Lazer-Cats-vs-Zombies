@@ -14,6 +14,10 @@ public class Script {
         this.parent = parent;
     }
 
+    public void load() {
+
+    }
+
     public void render() {
 
     }

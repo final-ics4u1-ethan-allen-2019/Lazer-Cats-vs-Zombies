@@ -19,6 +19,12 @@ public class GameObject {
         scripts = new ArrayList<>();
     }
 
+    public void load() {
+        for (Script script : scripts) {
+            script.load();
+        }
+    }
+
     public void update() {
         for (Script script : scripts) {
             script.update();

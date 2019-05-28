@@ -26,6 +26,13 @@ public class GameScene {
 
     void load() {
         active = (ArrayList<GameObject>) inactive.clone();
+        onLoad();
+    }
+
+    public void onLoad() {
+        for (GameObject object : active) {
+            object.load();
+        }
     }
 
     public void update() {
@@ -41,6 +48,7 @@ public class GameScene {
     }
 
     public void spawnObject(GameObject object) {
+        object.load();
         active.add(object);
     }
 
