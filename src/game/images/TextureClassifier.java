@@ -1,15 +1,20 @@
 package game.images;
 
+import engine.Cropper;
+
 public class TextureClassifier {
 
-    public enum textures{
+    private Cropper cropper;
+
+    //Make different enums for different categories of images
+    public enum stills {
 
         GOTTEM (0, "game/images/GOTCHA.jpg"),
         CATE (0, "game/images/CATE.jpg");
 
         private final int id;
         private final String url;
-        textures(int id, String url){
+        stills(int id, String url){
             this.id = id;
             this.url = url;
         }
@@ -22,7 +27,7 @@ public class TextureClassifier {
         }
     }
 
-    public static textures[] getTextureList(){
-        return textures.values();
+    public static stills[] getTextureList(){
+        return stills.values();
     }
 }
