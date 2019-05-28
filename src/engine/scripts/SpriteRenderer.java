@@ -39,6 +39,10 @@ public class SpriteRenderer extends Script {
         return this;
     }
 
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
     @Override
     public void render() {
         Draw.drawImage(image, parent.x+offset.x, parent.y+offset.y, width, height);

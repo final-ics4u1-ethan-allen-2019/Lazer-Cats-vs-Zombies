@@ -4,8 +4,8 @@ public class TextureClassifier {
 
     public enum textures{
 
-        GOTTEM (0, "game/images/GOTCHA.jpg");
-
+        GOTTEM (0, "game/images/GOTCHA.jpg"),
+        CATE (0, "game/images/CATE.jpg");
 
         private final int id;
         private final String url;

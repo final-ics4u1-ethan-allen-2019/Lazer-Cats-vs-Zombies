@@ -5,11 +5,13 @@ import engine.GameObject;
 import engine.math.Vector2;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
+import engine.scripts.Animator;
 import engine.scripts.SpriteRenderer;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
+import static game.images.TextureClassifier.textures.CATE;
 import static game.images.TextureClassifier.textures.GOTTEM;
 
 public class Main extends Game {
@@ -25,6 +27,10 @@ public class Main extends Game {
 
         object.addScript(new CharacterMovement());
         object.addScript(new SpriteRenderer(new Image(GOTTEM.getUrl()), 40, 40).setOffset(new Vector2(-20, -20)));
+        ArrayList<Image> images = new ArrayList<>();
+        images.add(new Image(GOTTEM.getUrl()));
+        images.add(new Image(CATE.getUrl()));
+        object.addScript(new Animator(new ArrayList[] {images}, 0));
 
         objects.add(object);
 
