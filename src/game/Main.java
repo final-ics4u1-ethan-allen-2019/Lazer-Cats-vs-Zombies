@@ -11,8 +11,8 @@ import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
-import static game.images.TextureClassifier.textures.CATE;
-import static game.images.TextureClassifier.textures.GOTTEM;
+import static game.images.TextureClassifier.stills.CATE;
+import static game.images.TextureClassifier.stills.GOTTEM;
 
 public class Main extends Game {
 
