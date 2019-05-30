@@ -3,7 +3,6 @@ package game;
 import engine.Cropper;
 import engine.Game;
 import engine.GameObject;
-import engine.math.Vector2;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import engine.scripts.Animator;
@@ -12,8 +11,6 @@ import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 
-import static game.images.TextureClassifier.stills.CATE;
-import static game.images.TextureClassifier.stills.GOTTEM;
 import static game.images.TextureClassifier.stills.HUMAN;
 
 public class Main extends Game {
@@ -27,14 +24,31 @@ public class Main extends Game {
         object.x = 400;
         object.y = 400;
 
-        object.addScript(new CharacterMovement());
-        object.addScript(new SpriteRenderer(HUMAN.getImage()));
+        object.addScript(new PlayerScript());
+        object.addScript(new SpriteRenderer(HUMAN.getImage(), 64, 64));
         Cropper cropper = new Cropper(HUMAN.getImage());
         ArrayList<Image> images = new ArrayList<>();
-        for (int x = 0; x < 8; x++) {
-            images.add(cropper.crop(60*x,400,60,80));
+        for (int x = 1; x < 9; x++) {
+            images.add(cropper.crop(64*x,512,64,64));
         }
-        object.addScript(new Animator(new ArrayList[] {images}, 0.15));
+        ArrayList<Image> images1 = new ArrayList<>();
+        for (int x = 1; x < 9; x++) {
+            images1.add(cropper.crop(64*x,576,64,64));
+        }
+        ArrayList<Image> images2 = new ArrayList<>();
+        for (int x = 1; x < 9; x++) {
+            images2.add(cropper.crop(64*x,640,64,64));
+        }
+        ArrayList<Image> images3 = new ArrayList<>();
+        for (int x = 1; x < 9; x++) {
+            images3.add(cropper.crop(64*x,704,64,64));
+        }
+        ArrayList<Image> images4 = new ArrayList<>();
+        for (int x = 0; x < 1; x++) {
+            images4.add(cropper.crop(64*x,640,64,64));
+        }
+
+        object.addScript(new Animator(new ArrayList[] {images, images1, images2, images3, images4}, 0.1));
 
         objects.add(object);
 

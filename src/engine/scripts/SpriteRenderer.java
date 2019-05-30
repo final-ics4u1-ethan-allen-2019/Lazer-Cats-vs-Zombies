@@ -10,7 +10,7 @@ public class SpriteRenderer extends Script {
 
     private double width, height;
 
-    private Vector2 offset;
+    private Vector2 offset = new Vector2();
 
     /**
      * Makes a new SpriteRenderer.
