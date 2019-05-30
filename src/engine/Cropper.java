@@ -2,15 +2,14 @@ package engine;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 
 public class Cropper {
 
-    private WritableImage img;
+    private Image img;
 
     public Cropper(Image img) {
-        this.img = (WritableImage) img;
+        this.img = img;
     }
 
     public void setImg(WritableImage img) {

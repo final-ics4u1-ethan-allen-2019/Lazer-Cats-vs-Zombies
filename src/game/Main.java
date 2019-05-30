@@ -1,5 +1,6 @@
 package game;
 
+import engine.Cropper;
 import engine.Game;
 import engine.GameObject;
 import engine.math.Vector2;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 
 import static game.images.TextureClassifier.stills.CATE;
 import static game.images.TextureClassifier.stills.GOTTEM;
+import static game.images.TextureClassifier.stills.HUMAN;
 
 public class Main extends Game {
 
@@ -26,11 +28,13 @@ public class Main extends Game {
         object.y = 400;
 
         object.addScript(new CharacterMovement());
-        object.addScript(new SpriteRenderer(new Image(GOTTEM.getUrl()), 40, 40).setOffset(new Vector2(-20, -20)));
+        object.addScript(new SpriteRenderer(HUMAN.getImage()));
+        Cropper cropper = new Cropper(HUMAN.getImage());
         ArrayList<Image> images = new ArrayList<>();
-        images.add(new Image(GOTTEM.getUrl()));
-        images.add(new Image(CATE.getUrl()));
-        object.addScript(new Animator(new ArrayList[] {images}, 0));
+        for (int x = 0; x < 8; x++) {
+            images.add(cropper.crop(60*x,400,60,80));
+        }
+        object.addScript(new Animator(new ArrayList[] {images}, 0.15));
 
         objects.add(object);
 
