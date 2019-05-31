@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class GameObject {
 
-    protected ArrayList<Script> scripts;
+    protected ArrayList<Script> scripts = new ArrayList<>();
     public double x, y;
 
     public GameObject(ArrayList<Script> scripts, double x, double y) {
@@ -16,7 +16,7 @@ public class GameObject {
     }
 
     public GameObject() {
-        scripts = new ArrayList<>();
+
     }
 
     public void load() {

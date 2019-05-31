@@ -2,7 +2,6 @@ package engine.scripts;
 
 import engine.Time;
 import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 
 import java.util.ArrayList;
 
@@ -18,20 +17,12 @@ public class Animator extends Script {
     private int current;
     private int state;
 
-    public Animator(ArrayList<Image>[] images, double change) {
+    public Animator(ArrayList<Image>[] images, double change, SpriteRenderer renderer) {
         this.images = images;
 
         this.change = change;
-    }
 
-    @Override
-    public void load() {
-        for (Script script : parent.getScripts()) {
-            if (script instanceof SpriteRenderer) {
-                renderer = (SpriteRenderer) script;
-                break;
-            }
-        }
+        this.renderer = renderer;
     }
 
     @Override
@@ -49,6 +40,14 @@ public class Animator extends Script {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public void setCurrent(int current) {
+        this.current = current;
+    }
+
+    public int getCurrent() {
+        return this.current;
     }
 
     public int getState() {

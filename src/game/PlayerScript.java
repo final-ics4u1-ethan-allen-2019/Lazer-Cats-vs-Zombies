@@ -1,5 +1,6 @@
 package game;
 
+import engine.Draw;
 import engine.Game;
 import engine.Time;
 import engine.input.KeyboardInput;
@@ -9,45 +10,68 @@ import engine.scripts.Animator;
 import engine.scripts.Script;
 import javafx.scene.input.KeyCode;
 
+import java.util.ArrayList;
+
 public class PlayerScript extends Script {
 
-    Animator anim;
+    ArrayList<Animator> animators = new ArrayList<>();
 
     @Override
     public void load() {
         for (Script script : parent.getScripts()) {
             if (script instanceof Animator) {
-                anim = (Animator) script;
-                break;
+                animators.add((Animator) script);
             }
         }
     }
 
     @Override
     public void update() {
+        for (Animator animator : animators) {
+            animator.setCurrent(animators.get(0).getCurrent());
+        }
         boolean moving = false;
         if (KeyboardInput.isKeyDown(KeyCode.W)) {
-            anim.setState(0);
+            for (Animator animator : animators) {
+                animator.setState(8);
+            }
             parent.y -= 200 * Time.deltaTime;
             moving = true;
         }
         if (KeyboardInput.isKeyDown(KeyCode.S)) {
-            anim.setState(2);
+            for (Animator animator : animators) {
+                animator.setState(10);
+            }
             parent.y += 200 * Time.deltaTime;
             moving = true;
         }
         if (KeyboardInput.isKeyDown(KeyCode.A)) {
-            anim.setState(1);
+            for (Animator animator : animators) {
+                animator.setState(9);
+            }
             parent.x -= 200 * Time.deltaTime;
             moving = true;
         }
         if (KeyboardInput.isKeyDown(KeyCode.D)) {
-            anim.setState(3);
+            for (Animator animator : animators) {
+                animator.setState(11);
+            }
             parent.x += 200 * Time.deltaTime;
             moving = true;
         }
-        if (!moving) anim.setState(4);
+        if (!moving) for (Animator animator : animators) {
+            animator.setState(4);
+        }
 
         SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));
     }
+
+//    @Override
+//    public void render() {
+//        int y = 0;
+//        for (Animator anim : animators) {
+//            Draw.drawText(anim.getState() + "", 0, 20+(20*y), true);
+//            y++;
+//        }
+//    }
 }
