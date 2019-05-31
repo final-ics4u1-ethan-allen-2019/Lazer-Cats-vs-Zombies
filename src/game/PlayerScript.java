@@ -70,7 +70,7 @@ public class PlayerScript extends Script {
             moving = true;
         }
         if (!moving) for (Animator animator : animators) {
-            animator.setState(4);
+            animator.setState(21);
         }
 
         rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));

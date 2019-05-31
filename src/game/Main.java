@@ -91,6 +91,9 @@ public class Main extends Game {
             }
             im.add(images);
         }
+        ArrayList<Image> images = new ArrayList<>();
+        images.add(crop.crop(0, 10*64, 64, 64));
+        im.add(images);
 
         return (ArrayList<Image>[]) im.toArray(new ArrayList[im.size()]);
     }
