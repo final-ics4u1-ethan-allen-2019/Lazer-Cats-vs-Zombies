@@ -24,7 +24,7 @@ public class Main extends Game {
 
         //objects.add(objecto);
 
-        GameObject object = new PlayerObject(new Player(Player.BodyType.LIGHT, Player.Gender.FEMALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED));
+        GameObject object = new PlayerObject(new Player(Player.BodyType.TANNED2, Player.Gender.FEMALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED, Player.HairType.BANGS, Player.HairColor.BLUE));
 
         object.x = 400;
         object.y = 400;
@@ -92,7 +92,19 @@ public class Main extends Game {
             im.add(images);
         }
         ArrayList<Image> images = new ArrayList<>();
+        images.add(crop.crop(0, 8*64, 64, 64));
+        im.add(images);
+
+        images = new ArrayList<>();
+        images.add(crop.crop(0, 9*64, 64, 64));
+        im.add(images);
+
+        images = new ArrayList<>();
         images.add(crop.crop(0, 10*64, 64, 64));
+        im.add(images);
+
+        images = new ArrayList<>();
+        images.add(crop.crop(0, 11*64, 64, 64));
         im.add(images);
 
         return (ArrayList<Image>[]) im.toArray(new ArrayList[im.size()]);

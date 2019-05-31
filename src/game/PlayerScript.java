@@ -4,6 +4,7 @@ import engine.Draw;
 import engine.Game;
 import engine.Time;
 import engine.input.KeyboardInput;
+import engine.input.MouseInput;
 import engine.math.Vector2;
 import engine.scenes.SceneManager;
 import engine.scripts.Animator;
@@ -19,6 +20,8 @@ public class PlayerScript extends Script {
     private Animator leftHand, rightHand, torso, pants, head;
 
     private Player player;
+
+    private boolean set;
 
     public PlayerScript(Animator leftHand, Animator rightHand, Animator torso, Animator pants, Animator head) {
         this.leftHand = leftHand;
@@ -43,45 +46,65 @@ public class PlayerScript extends Script {
         for (Animator animator : animators) {
             animator.setCurrent(animators.get(0).getCurrent());
         }
+        // Direction
+        int ang = (int) (Math.toDegrees(Math.atan2(((Game.getHeight()/2)-MouseInput.y), (Game.getWidth()/2- MouseInput.x))))+180;
+        int dir = 0;
+        if ((ang >= 225 && ang <= 315)) dir = 0;
+        else if ((ang >= 135 && ang <= 225)) dir = 1;
+        else if ((ang >= 45 && ang <= 135)) dir = 2;
+        else dir = 3;
+
+        boolean attacking = MouseInput.isPressed;
+        if (attacking) {
+            for (Animator animator : animators) {
+                animator.setState(4+dir);
+            }
+        }
+
         boolean moving = false;
-        if (KeyboardInput.isKeyDown(KeyCode.W)) {
+        if (KeyboardInput.isKeyDown(KeyCode.W) && !attacking) {
             for (Animator animator : animators) {
                 animator.setState(8);
             }
             parent.y -= 200 * Time.deltaTime;
             moving = true;
         }
-        if (KeyboardInput.isKeyDown(KeyCode.S)) {
+        if (KeyboardInput.isKeyDown(KeyCode.S) && !attacking) {
             for (Animator animator : animators) {
                 animator.setState(10);
             }
             parent.y += 200 * Time.deltaTime;
             moving = true;
         }
-        if (KeyboardInput.isKeyDown(KeyCode.A)) {
+        if (KeyboardInput.isKeyDown(KeyCode.A) && !attacking) {
             for (Animator animator : animators) {
                 animator.setState(9);
             }
             parent.x -= 200 * Time.deltaTime;
             moving = true;
         }
-        if (KeyboardInput.isKeyDown(KeyCode.D)) {
+        if (KeyboardInput.isKeyDown(KeyCode.D) && !attacking) {
             for (Animator animator : animators) {
                 animator.setState(11);
             }
             parent.x += 200 * Time.deltaTime;
             moving = true;
         }
-        if (!moving) for (Animator animator : animators) {
-            animator.setState(21);
+        if (!(moving || attacking)) {
+            for (Animator animator : animators) {
+                animator.setState(21+dir);
+            }
         }
 
-        rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
-        torso.setImages(player.getTorso().getSet(player.getGender()));
-        pants.setImages(player.getPants().getSet(player.getGender()));
-        head.setImages(player.getHead().getSet(player.getGender()));
+        if (!set) {
+            rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
+            //torso.setImages(player.getTorso().getSet(player.getGender()));
+            //pants.setImages(player.getPants().getSet(player.getGender()));
+            head.setImages(player.getHairType().getSet(player.getHairColor()));
+            set = true;
+        }
 
-        SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));
+        SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2)+32, parent.y-(Game.getHeight()/2)+32);
     }
 
 //    @Override
@@ -92,4 +115,11 @@ public class PlayerScript extends Script {
 //            y++;
 //        }
 //    }
+
+
+    @Override
+    public void render() {
+        Draw.drawText((Math.toDegrees(Math.atan2(((Game.getHeight()/2)-MouseInput.y), (Game.getWidth()/2- MouseInput.x))))+180 + "", 0, 20, true);
+        //Draw.drawText((Runtime.getRuntime().freeMemory()/1048576) + "/" + (Runtime.getRuntime().totalMemory()/1048576) + "/" + (Runtime.getRuntime().maxMemory()/1048576), 0, 20, true);
+    }
 }

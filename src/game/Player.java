@@ -11,18 +11,22 @@ public class Player {
     private NoseType noseType;
     private EarType earType;
     private EyeColor eyeColor;
+    private HairType hairType;
+    private HairColor hairColor;
 
     private Weapons leftHand;
     private Weapons rightHand = Weapons.SPEAR;
 
-    private Clothes torso = Clothes.BROWN_SHIRT, pants = Clothes.RED_PANTS, head = Clothes.BANDANA;
+    private Clothes torso, pants = Clothes.SKIRT, head;
 
-    public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor) {
+    public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;
         this.gender = gender;
         this.noseType = noseType;
         this.earType = earType;
         this.eyeColor = eyeColor;
+        this.hairType = hairType;
+        this.hairColor = hairColor;
     }
 
     public BodyType getBodyType() {
@@ -63,6 +67,14 @@ public class Player {
 
     public Clothes getPants() {
         return pants;
+    }
+
+    public HairColor getHairColor() {
+        return hairColor;
+    }
+
+    public HairType getHairType() {
+        return hairType;
     }
 
     public enum BodyType {
@@ -166,4 +178,78 @@ public class Player {
         }
 
     }
+
+    public enum HairType {
+
+        BANGS,
+        BANGSLONG,
+        BANGSLONG2,
+        BANGSSHORT,
+        BEDHEAD,
+        BUNCHES,
+        JEWFRO,
+        LONG,
+        LONGHAWK,
+        LONGKNOT,
+        LOOSE,
+        MESSY1,
+        MESSY2,
+        MOHAWK,
+        PAGE,
+        PAGE2,
+        PARTED,
+        PIXIE,
+        PLAIN,
+        PONYTAIL,
+        PONYTAIL2,
+        PRINCESS,
+        SHORTHAWK,
+        SHORTKNOT,
+        SHOULDERL,
+        SHOULDERR,
+        SWOOP,
+        UNKEMPT,
+        XLONG,
+        XLONGKNOT;
+
+        public ArrayList<Image>[] getSet(HairColor color) {
+            return Main.loadCharArray(new Image("game/images/spritesheets/hair/male/" + this.name().toLowerCase() + "/" + color.name().toLowerCase().replace("_", "-") + ".png"));
+        }
+
+    }
+
+    public enum HairColor {
+
+        BLACK,
+        BLONDE,
+        BLONDE2,
+        BLUE,
+        BLUE2,
+        BROWN,
+        BROWN2,
+        BRUNETTE,
+        BRUNETTE2,
+        DARK_BLONDE,
+        GOLD,
+        GRAY,
+        GRAY2,
+        GREEN,
+        GREEN2,
+        LIGHT_BLONDE,
+        LIGHT_BLONDE2,
+        PINK,
+        PINK2,
+        PURPLE,
+        RAVEN,
+        RAVEN2,
+        REDHEAD,
+        REDHEAD2,
+        RUBY_RED,
+        WHITE,
+        WHITE_BLONDE,
+        WHITE_BLONDE2,
+        WHITE_CYAN;
+
+    }
+
 }
