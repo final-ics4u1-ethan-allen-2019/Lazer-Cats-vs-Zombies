@@ -53,4 +53,12 @@ public class Animator extends Script {
     public int getState() {
         return this.state;
     }
+
+    public void setImages(ArrayList<Image>[] images) {
+        this.images = images;
+    }
+
+    public ArrayList<Image>[] getImages() {
+        return images;
+    }
 }

@@ -16,8 +16,18 @@ public class PlayerScript extends Script {
 
     ArrayList<Animator> animators = new ArrayList<>();
 
+    private Animator leftHand, rightHand;
+
+    private Player player;
+
+    public PlayerScript(Animator leftHand, Animator rightHand) {
+        this.leftHand = leftHand;
+        this.rightHand = rightHand;
+    }
+
     @Override
     public void load() {
+        player = ((PlayerObject) parent).player;
         for (Script script : parent.getScripts()) {
             if (script instanceof Animator) {
                 animators.add((Animator) script);
@@ -62,6 +72,8 @@ public class PlayerScript extends Script {
         if (!moving) for (Animator animator : animators) {
             animator.setState(4);
         }
+
+        rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
 
         SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));
     }

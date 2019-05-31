@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PlayerObject extends GameObject {
 
-    private Player player;
+    Player player;
 
     public PlayerObject(Player player) {
         super();
@@ -19,8 +19,8 @@ public class PlayerObject extends GameObject {
     @Override
     public void load() {
 
-        Animator body, eyes, ears, nose;
-        SpriteRenderer bodySr, eyesSr, earsSr, noseSr;
+        Animator body, eyes, ears, nose, leftHand, rightHand;
+        SpriteRenderer bodySr, eyesSr, earsSr, noseSr, leftHandSr, rightHandSr;
 
         ArrayList<Image>[] bod = player.getBodyType().getGender(player.getGender());
         bodySr = new SpriteRenderer(bod[0].get(0));
@@ -50,7 +50,21 @@ public class PlayerObject extends GameObject {
         addScript(noseSr);
         addScript(nose);
 
-        addScript(new PlayerScript());
+        ArrayList<Image>[] lef = player.getBodyType().getNose(player.getNoseType());
+        leftHandSr = new SpriteRenderer(lef[0].get(0));
+        leftHand = new Animator(lef, 0.1, leftHandSr);
+
+        addScript(leftHandSr);
+        addScript(leftHand);
+
+        ArrayList<Image>[] rig = player.getBodyType().getNose(player.getNoseType());
+        rightHandSr = new SpriteRenderer(rig[0].get(0));
+        rightHand = new Animator(rig, 0.1, rightHandSr);
+
+        addScript(rightHandSr);
+        addScript(rightHand);
+
+        addScript(new PlayerScript(leftHand, rightHand));
 
         super.load();
     }

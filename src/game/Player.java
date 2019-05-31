@@ -12,6 +12,9 @@ public class Player {
     private EarType earType;
     private EyeColor eyeColor;
 
+    private Weapons leftHand;
+    private Weapons rightHand = Weapons.SPEAR;
+
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor) {
         this.bodyType = bodyType;
         this.gender = gender;
@@ -38,6 +41,14 @@ public class Player {
 
     public NoseType getNoseType() {
         return noseType;
+    }
+
+    public Weapons getLeftHand() {
+        return leftHand;
+    }
+
+    public Weapons getRightHand() {
+        return rightHand;
     }
 
     public enum BodyType {
@@ -104,7 +115,8 @@ public class Player {
     public enum Gender {
 
         MALE,
-        FEMALE;
+        FEMALE,
+        EITHER;
 
     }
 
