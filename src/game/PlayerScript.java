@@ -54,6 +54,7 @@ public class PlayerScript extends Script {
         else if ((ang >= 45 && ang <= 135)) dir = 2;
         else dir = 3;
 
+        // Attacking
         boolean attacking = MouseInput.isPressed;
         if (attacking) {
             for (Animator animator : animators) {
@@ -61,6 +62,7 @@ public class PlayerScript extends Script {
             }
         }
 
+        // Movement
         boolean moving = false;
         if (KeyboardInput.isKeyDown(KeyCode.W) && !attacking) {
             for (Animator animator : animators) {
@@ -90,12 +92,15 @@ public class PlayerScript extends Script {
             parent.x += 200 * Time.deltaTime;
             moving = true;
         }
+
+        // Static looking direction
         if (!(moving || attacking)) {
             for (Animator animator : animators) {
                 animator.setState(21+dir);
             }
         }
 
+        // This is bad
         if (!set) {
             rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
             //torso.setImages(player.getTorso().getSet(player.getGender()));
