@@ -2,10 +2,15 @@ package game.images;
 
 import engine.Cropper;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
+
+import java.util.ArrayList;
 
 public class TextureClassifier {
 
-    private Cropper cropper;
+    private static Cropper cropper = new Cropper(new Image("game/images/background/terrain.png"));
+    private static ArrayList<ArrayList<WritableImage>> backgroundList = cropper.cropSpriteSheets(32,32);
+
 
     //Make different enums for different categories of images
     public enum stills {
@@ -29,8 +34,8 @@ public class TextureClassifier {
         public String getUrl(){
             return this.url;
         }
-        public String getId(){
-            return this.url;
+        public int getId(){
+            return this.id;
         }
     }
 
