@@ -19,8 +19,8 @@ public class PlayerObject extends GameObject {
     @Override
     public void load() {
 
-        Animator body, eyes, ears, nose, leftHand, rightHand;
-        SpriteRenderer bodySr, eyesSr, earsSr, noseSr, leftHandSr, rightHandSr;
+        Animator body, eyes, ears, nose, leftHand, rightHand, torso, head, pants;
+        SpriteRenderer bodySr, eyesSr, earsSr, noseSr, leftHandSr, rightHandSr, torsoSr, headSr, pantSr;
 
         ArrayList<Image>[] bod = player.getBodyType().getGender(player.getGender());
         bodySr = new SpriteRenderer(bod[0].get(0));
@@ -50,6 +50,27 @@ public class PlayerObject extends GameObject {
         addScript(noseSr);
         addScript(nose);
 
+        ArrayList<Image>[] tor = player.getBodyType().getNose(player.getNoseType());
+        torsoSr = new SpriteRenderer(tor[0].get(0));
+        torso = new Animator(tor, 0.1, torsoSr);
+
+        addScript(torsoSr);
+        addScript(torso);
+
+        ArrayList<Image>[] hea = player.getBodyType().getNose(player.getNoseType());
+        headSr = new SpriteRenderer(hea[0].get(0));
+        head = new Animator(hea, 0.1, headSr);
+
+        addScript(headSr);
+        addScript(head);
+
+        ArrayList<Image>[] pan = player.getBodyType().getNose(player.getNoseType());
+        pantSr = new SpriteRenderer(pan[0].get(0));
+        pants = new Animator(pan, 0.1, pantSr);
+
+        addScript(pantSr);
+        addScript(pants);
+
         ArrayList<Image>[] lef = player.getBodyType().getNose(player.getNoseType());
         leftHandSr = new SpriteRenderer(lef[0].get(0));
         leftHand = new Animator(lef, 0.1, leftHandSr);
@@ -64,7 +85,7 @@ public class PlayerObject extends GameObject {
         addScript(rightHandSr);
         addScript(rightHand);
 
-        addScript(new PlayerScript(leftHand, rightHand));
+        addScript(new PlayerScript(leftHand, rightHand, torso, pants, head));
 
         super.load();
     }

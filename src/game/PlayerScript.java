@@ -16,13 +16,16 @@ public class PlayerScript extends Script {
 
     ArrayList<Animator> animators = new ArrayList<>();
 
-    private Animator leftHand, rightHand;
+    private Animator leftHand, rightHand, torso, pants, head;
 
     private Player player;
 
-    public PlayerScript(Animator leftHand, Animator rightHand) {
+    public PlayerScript(Animator leftHand, Animator rightHand, Animator torso, Animator pants, Animator head) {
         this.leftHand = leftHand;
         this.rightHand = rightHand;
+        this.torso = torso;
+        this.pants = pants;
+        this.head = head;
     }
 
     @Override
@@ -74,6 +77,9 @@ public class PlayerScript extends Script {
         }
 
         rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
+        torso.setImages(player.getTorso().getSet(player.getGender()));
+        pants.setImages(player.getPants().getSet(player.getGender()));
+        head.setImages(player.getHead().getSet(player.getGender()));
 
         SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));
     }

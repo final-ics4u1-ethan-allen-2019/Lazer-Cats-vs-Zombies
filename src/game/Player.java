@@ -15,6 +15,8 @@ public class Player {
     private Weapons leftHand;
     private Weapons rightHand = Weapons.SPEAR;
 
+    private Clothes torso = Clothes.BROWN_SHIRT, pants = Clothes.RED_PANTS, head = Clothes.BANDANA;
+
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor) {
         this.bodyType = bodyType;
         this.gender = gender;
@@ -49,6 +51,18 @@ public class Player {
 
     public Weapons getRightHand() {
         return rightHand;
+    }
+
+    public Clothes getTorso() {
+        return torso;
+    }
+
+    public Clothes getHead() {
+        return head;
+    }
+
+    public Clothes getPants() {
+        return pants;
     }
 
     public enum BodyType {

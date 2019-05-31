@@ -24,7 +24,7 @@ public class Main extends Game {
 
         //objects.add(objecto);
 
-        GameObject object = new PlayerObject(new Player(Player.BodyType.DARKELF, Player.Gender.FEMALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED));
+        GameObject object = new PlayerObject(new Player(Player.BodyType.LIGHT, Player.Gender.FEMALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED));
 
         object.x = 400;
         object.y = 400;

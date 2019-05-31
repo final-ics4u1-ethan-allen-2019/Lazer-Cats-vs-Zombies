@@ -17,7 +17,7 @@ public class TextureClassifier {
 
         GOTTEM (0, "game/images/GOTCHA.jpg"),
         HUMAN(0, "game/images/spritesheets/body/male/light.png"),
-        SKIRT(0, "game/images/spritesheets/legs/skirt/male/robe_skirt_male.png"),
+        SKIRT(0, "game/images/spritesheets/legs/skirt/male/brown.png"),
         CATE (0, "game/images/CATE.jpg");
 
         private final int id;
