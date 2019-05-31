@@ -4,7 +4,7 @@ import engine.GameObject;
 import engine.Rect;
 import javafx.scene.image.Image;
 
-public class Tile {
+public class Tile extends GameObject {
     //WIP
     private Image img;
     private Rect rect;

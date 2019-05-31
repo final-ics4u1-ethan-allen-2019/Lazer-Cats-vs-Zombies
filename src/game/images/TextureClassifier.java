@@ -34,7 +34,12 @@ public class TextureClassifier {
         }
     }
 
-    public static stills[] getTextureList(){
+    public enum backgroundTiles {
+        
+
+    }
+
+    public static stills[] getStillsList(){
         return stills.values();
     }
 }
