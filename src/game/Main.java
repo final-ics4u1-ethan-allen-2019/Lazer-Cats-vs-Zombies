@@ -12,12 +12,22 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 import static game.images.TextureClassifier.stills.HUMAN;
+import static game.images.TextureClassifier.backgroundTiles.TOP_LEFT_LIGHT_STONE_DENT;
 
 public class Main extends Game {
 
     @Override
     public void load() {
         ArrayList<GameObject> objects = new ArrayList<>();
+
+        GameObject objecto = new GameObject();
+
+        objecto.x = 400;
+        objecto.y = 400;
+
+        objecto.addScript(new SpriteRenderer(TOP_LEFT_LIGHT_STONE_DENT.getImage(), 64, 64));
+
+        objects.add(objecto);
 
         GameObject object = new GameObject();
 
