@@ -40,8 +40,22 @@ public class TextureClassifier {
     }
 
     public enum backgroundTiles {
-        
+        LIGHTSTONE_0 (0, backgroundList.get(0).get(0)),
+        TOP_LEFT_LIGHT_STONE_HOLE (1, backgroundList.get(0).get(1));
 
+        private final int id;
+        private final Image im;
+        backgroundTiles(int id, Image im){
+            this.id = id;
+            this.im = im;
+        }
+
+        public Image getImage() {
+            return this.im;
+        }
+        public int getId(){
+            return this.id;
+        }
     }
 
     public static stills[] getStillsList(){
