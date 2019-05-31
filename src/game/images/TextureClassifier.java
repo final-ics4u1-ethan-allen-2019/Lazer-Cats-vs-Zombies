@@ -73,7 +73,7 @@ public class TextureClassifier {
         CLIFF_EDGE_TOP_LEFT_0 (30, backgroundList.get(0).get(30)),
         CLIFF_EDGE_TOP_RIGHT_0 (31, backgroundList.get(0).get(31)),
 
-        //EDDDIITES HERESERSERSER
+        /*EDDDIITES HERESERSERSER
         LIGHT_STONE_1 (0, backgroundList.get(0).get(0)),
         LIGHT_STONE_DENT_TOP_LEFT(1, backgroundList.get(0).get(1)),
         LIGHT_STONE_DENT_TOP_RIGHT(2, backgroundList.get(0).get(2)),
@@ -106,6 +106,8 @@ public class TextureClassifier {
         WATER_INVERSE_HOLE_TOP_RIGHT(29, backgroundList.get(0).get(29)),
         CLIFF_EDGE_TOP_LEFT_0 (30, backgroundList.get(0).get(30)),
         CLIFF_EDGE_TOP_RIGHT_0 (31, backgroundList.get(0).get(31)),
+        */
+
         ;
 
         private final int id;
