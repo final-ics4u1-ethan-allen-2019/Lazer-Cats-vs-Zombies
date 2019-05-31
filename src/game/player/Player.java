@@ -1,5 +1,8 @@
-package game;
+package game.player;
 
+import game.Main;
+import game.items.Clothes;
+import game.items.Weapons;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -14,10 +17,9 @@ public class Player {
     private HairType hairType;
     private HairColor hairColor;
 
-    private Weapons leftHand;
-    private Weapons rightHand = Weapons.SPEAR;
+    private Weapons leftHand, rightHand;
 
-    private Clothes torso, pants = Clothes.SKIRT, head;
+    private Clothes torso, pants, head;
 
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;

@@ -27,7 +27,7 @@ public class Animator extends Script {
 
     @Override
     public void update() {
-        if (renderer != null) {
+        if (renderer != null && images != null) {
             last += Time.deltaTime;
             if (last >= change) {
                 current++;

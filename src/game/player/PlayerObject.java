@@ -1,4 +1,4 @@
-package game;
+package game.player;
 
 import engine.GameObject;
 import engine.scripts.Animator;

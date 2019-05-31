@@ -5,6 +5,8 @@ import engine.Game;
 import engine.GameObject;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
+import game.player.Player;
+import game.player.PlayerObject;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;

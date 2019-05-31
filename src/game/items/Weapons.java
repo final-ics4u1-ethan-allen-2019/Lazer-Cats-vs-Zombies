@@ -1,5 +1,7 @@
-package game;
+package game.items;
 
+import game.Main;
+import game.player.Player;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;

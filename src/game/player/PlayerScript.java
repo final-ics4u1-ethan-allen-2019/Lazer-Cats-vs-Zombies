@@ -1,6 +1,5 @@
-package game;
+package game.player;
 
-import engine.Draw;
 import engine.Game;
 import engine.Time;
 import engine.input.KeyboardInput;
@@ -39,16 +38,19 @@ public class PlayerScript extends Script {
                 animators.add((Animator) script);
             }
         }
+        itemsChanged();
     }
 
     @Override
     public void update() {
+        // Sync animators
         for (Animator animator : animators) {
             animator.setCurrent(animators.get(0).getCurrent());
         }
+
         // Direction
         int ang = (int) (Math.toDegrees(Math.atan2(((Game.getHeight()/2)-MouseInput.y), (Game.getWidth()/2- MouseInput.x))))+180;
-        int dir = 0;
+        int dir;
         if ((ang >= 225 && ang <= 315)) dir = 0;
         else if ((ang >= 135 && ang <= 225)) dir = 1;
         else if ((ang >= 45 && ang <= 135)) dir = 2;
@@ -57,8 +59,21 @@ public class PlayerScript extends Script {
         // Attacking
         boolean attacking = MouseInput.isPressed;
         if (attacking) {
+            int state = 12;
+
+            if (player.getRightHand() != null) switch (player.getRightHand().attackType) {
+                case RANGED:
+                    state = 16;
+                case MAGIC:
+                    state = 12;
+                case POKE:
+                    state = 4;
+                case SLASH:
+                    state = 12;
+            }
+
             for (Animator animator : animators) {
-                animator.setState(4+dir);
+                animator.setState(state+dir);
             }
         }
 
@@ -100,31 +115,19 @@ public class PlayerScript extends Script {
             }
         }
 
-        // This is bad
-        if (!set) {
-            rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
-            //torso.setImages(player.getTorso().getSet(player.getGender()));
-            //pants.setImages(player.getPants().getSet(player.getGender()));
-            head.setImages(player.getHairType().getSet(player.getHairColor()));
-            set = true;
-        }
-
         SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2)+32, parent.y-(Game.getHeight()/2)+32);
     }
 
-//    @Override
-//    public void render() {
-//        int y = 0;
-//        for (Animator anim : animators) {
-//            Draw.drawText(anim.getState() + "", 0, 20+(20*y), true);
-//            y++;
-//        }
-//    }
-
-
-    @Override
-    public void render() {
-        Draw.drawText((Math.toDegrees(Math.atan2(((Game.getHeight()/2)-MouseInput.y), (Game.getWidth()/2- MouseInput.x))))+180 + "", 0, 20, true);
-        //Draw.drawText((Runtime.getRuntime().freeMemory()/1048576) + "/" + (Runtime.getRuntime().totalMemory()/1048576) + "/" + (Runtime.getRuntime().maxMemory()/1048576), 0, 20, true);
+    public void itemsChanged() {
+        if (player.getRightHand() == null) rightHand.setImages(null);
+        else rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
+        if (player.getTorso() == null) torso.setImages(null);
+        else torso.setImages(player.getTorso().getSet(player.getGender()));
+        if (player.getPants() == null) pants.setImages(null);
+        else pants.setImages(player.getPants().getSet(player.getGender()));
+        if (player.getHead() == null) {
+            if (player.getHairType() == null) head.setImages(null);
+            else head.setImages(player.getHairType().getSet(player.getHairColor()));
+        } else head.setImages(player.getHead().getSet(player.getGender()));
     }
 }
