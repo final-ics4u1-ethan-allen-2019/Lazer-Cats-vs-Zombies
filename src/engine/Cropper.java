@@ -90,9 +90,9 @@ public class Cropper {
 
 
         if (reverseOrder){
-            for(int x = startX; x < Math.floor(img.getHeight()/height) * height; x+= height){
+            for(int x = startX; x < Math.floor(img.getHeight()/height) * height; x+= width){
                 ArrayList<WritableImage> row = new ArrayList<>();
-                for(int y = startY; y < Math.floor(img.getWidth()/width) * width; y+= width){
+                for(int y = startY; y < Math.floor(img.getWidth()/width) * width; y+= height){
                     row.add(new WritableImage(w, x, y, width, height));
                 }
                 textures.add(row);
