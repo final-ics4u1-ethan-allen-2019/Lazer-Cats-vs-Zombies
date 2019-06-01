@@ -243,6 +243,8 @@ public class TextureClassifier {
         WATER_TILE_2 (128, backgroundList.get(5).get(29)),
         REVERSE_CLIFF_LEFT_CORNER (148, backgroundList.get(5).get(30)),
         REVERSE_CLIFF_RIGHT_CORNER (148, backgroundList.get(5).get(31)),
+
+        //STILL MORE
         ;
 
         private final int id;
