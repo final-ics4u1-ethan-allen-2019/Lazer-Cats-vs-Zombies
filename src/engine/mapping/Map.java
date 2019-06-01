@@ -2,10 +2,26 @@ package engine.mapping;
 
 import engine.GameObject;
 
-import java.util.ArrayList;
-
 public class Map extends GameObject {
-    //WIP
-    ArrayList<Tile> tiles;
 
+    private Tile[][] tileMap;
+    private String mapData;
+
+    public Map(Tile[][] map, String mapData){
+        tileMap = map;
+        this.mapData = mapData;
+    }
+
+    public Map(String mapData){
+        this.mapData = mapData;
+    }
+
+    @Override
+    public void render(){
+        for (Tile[] row : tileMap) {
+            for (Tile tile : row){
+                tile.render();
+            }
+        }
+    }
 }

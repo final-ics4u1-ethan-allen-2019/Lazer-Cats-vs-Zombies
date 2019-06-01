@@ -40,7 +40,7 @@ public class TextureClassifier {
         }
     }
 
-    public enum backgroundTiles {
+    public enum BackgroundTiles {
 
         //Row 1
         LIGHT_STONE_0 (0, backgroundList.get(0).get(0)),
@@ -249,7 +249,7 @@ public class TextureClassifier {
 
         private final int id;
         private final Image im;
-        backgroundTiles(int id, Image im){
+        BackgroundTiles(int id, Image im){
             this.id = id;
             this.im = im;
         }
