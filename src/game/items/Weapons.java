@@ -65,7 +65,8 @@ public enum Weapons {
         RANGED,
         MAGIC,
         SLASH,
-        POKE;
+        POKE,
+        SPECIALNEEDS;
 
     }
 

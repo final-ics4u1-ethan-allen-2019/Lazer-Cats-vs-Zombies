@@ -15,6 +15,10 @@ public class Vector2 {
         y = 0;
     }
 
+    public Vector2 multiply(double val) {
+        return new Vector2(this.x * val, this.y * val);
+    }
+
     public Vector2 copy() {
         return new Vector2(x, y);
     }

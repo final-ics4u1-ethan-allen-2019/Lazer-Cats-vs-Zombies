@@ -52,4 +52,7 @@ public class GameScene {
         active.add(object);
     }
 
+    public ArrayList<GameObject> getActive() {
+        return active;
+    }
 }

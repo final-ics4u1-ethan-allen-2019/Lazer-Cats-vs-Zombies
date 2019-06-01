@@ -5,6 +5,7 @@ import engine.Game;
 import engine.GameObject;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
+import game.enemies.Enemy;
 import game.player.Player;
 import game.player.PlayerObject;
 import javafx.scene.image.Image;
@@ -32,6 +33,8 @@ public class Main extends Game {
         object.y = 400;
 
         objects.add(object);
+
+        objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));
 
         object = new GameObject();
 
