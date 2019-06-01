@@ -64,12 +64,16 @@ public class PlayerScript extends Script {
             if (player.getRightHand() != null) switch (player.getRightHand().attackType) {
                 case RANGED:
                     state = 16;
+                    break;
                 case MAGIC:
                     state = 12;
+                    break;
                 case POKE:
                     state = 4;
+                    break;
                 case SLASH:
                     state = 12;
+                    break;
             }
 
             for (Animator animator : animators) {
@@ -121,13 +125,19 @@ public class PlayerScript extends Script {
     public void itemsChanged() {
         if (player.getRightHand() == null) rightHand.setImages(null);
         else rightHand.setImages(player.getRightHand().getImageSet(player.getGender()));
-        if (player.getTorso() == null) torso.setImages(null);
-        else torso.setImages(player.getTorso().getSet(player.getGender()));
-        if (player.getPants() == null) pants.setImages(null);
-        else pants.setImages(player.getPants().getSet(player.getGender()));
-        if (player.getHead() == null) {
-            if (player.getHairType() == null) head.setImages(null);
-            else head.setImages(player.getHairType().getSet(player.getHairColor()));
-        } else head.setImages(player.getHead().getSet(player.getGender()));
+        if (player.getChestPlate() == null) {
+            if (player.getTorso() == null) torso.setImages(null);
+            else torso.setImages(player.getTorso().getSet(player.getGender()));
+        } else torso.setImages(player.getChestPlate().getSet(player.getGender()));
+        if (player.getLeggings() == null) {
+            if (player.getPants() == null) pants.setImages(null);
+            else pants.setImages(player.getPants().getSet(player.getGender()));
+        } else pants.setImages(player.getLeggings().getSet(player.getGender()));
+        if (player.getHelmet() == null) {
+            if (player.getHead() == null) {
+                if (player.getHairType() == null) head.setImages(null);
+                else head.setImages(player.getHairType().getSet(player.getHairColor()));
+            } else head.setImages(player.getHead().getSet(player.getGender()));
+        } else head.setImages(player.getHelmet().getSet(player.getGender()));
     }
 }

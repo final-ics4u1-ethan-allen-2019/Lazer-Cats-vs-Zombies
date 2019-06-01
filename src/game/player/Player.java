@@ -1,8 +1,7 @@
 package game.player;
 
 import game.Main;
-import game.items.Clothes;
-import game.items.Weapons;
+import game.items.*;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -17,9 +16,13 @@ public class Player {
     private HairType hairType;
     private HairColor hairColor;
 
-    private Weapons leftHand, rightHand;
+    private Weapons leftHand, rightHand = Weapons.SPEAR;
 
     private Clothes torso, pants, head;
+
+    private Helmet helmet = Helmet.SPEAR;
+    private ChestPlate chestPlate = ChestPlate.CHAIN;
+    private Leggings leggings = Leggings.METAL;
 
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;
@@ -77,6 +80,30 @@ public class Player {
 
     public HairType getHairType() {
         return hairType;
+    }
+
+    public Helmet getHelmet() {
+        return helmet;
+    }
+
+    public ChestPlate getChestPlate() {
+        return chestPlate;
+    }
+
+    public Leggings getLeggings() {
+        return leggings;
+    }
+
+    public void setHelmet(Helmet helmet) {
+        this.helmet = helmet;
+    }
+
+    public void setChestPlate(ChestPlate chestPlate) {
+        this.chestPlate = chestPlate;
+    }
+
+    public void setLeggings(Leggings leggings) {
+        this.leggings = leggings;
     }
 
     public enum BodyType {
