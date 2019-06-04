@@ -1,5 +1,7 @@
 package engine.input;
 
+import engine.math.Vector2;
+import engine.scenes.SceneManager;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -17,5 +19,10 @@ public class MouseInput implements EventHandler<MouseEvent> {
 
         if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) isPressed = true;
         else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) isPressed = false;
+    }
+
+    public static Vector2 getWorldLoc() {
+        Vector2 vector2 = SceneManager.getCurrentGameScene().cameraPosition;
+        return vector2.add(x, y);
     }
 }

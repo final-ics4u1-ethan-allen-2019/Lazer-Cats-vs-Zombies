@@ -24,6 +24,10 @@ public class Player {
     private ChestPlate chestPlate = ChestPlate.CHAIN;
     private Leggings leggings = Leggings.METAL;
 
+    private int health = 50;
+
+    private Runnable onDeath;
+
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;
         this.gender = gender;
@@ -104,6 +108,29 @@ public class Player {
 
     public void setLeggings(Leggings leggings) {
         this.leggings = leggings;
+    }
+
+    public void setOnDeath(Runnable onDeath) {
+        this.onDeath = onDeath;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void damage(int amount) {
+        if (health != 0) {
+            health -= amount;
+            if (health <= 0) {
+                health = 0;
+                onDeath.run();
+            }
+        }
+    }
+
+    public void heal(int amount) {
+        health += amount;
+        if (health > 50) health = 50;
     }
 
     public enum BodyType {

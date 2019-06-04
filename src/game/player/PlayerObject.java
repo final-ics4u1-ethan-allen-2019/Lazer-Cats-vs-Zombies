@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PlayerObject extends GameObject {
 
-    Player player;
+    public Player player;
 
     public PlayerObject(Player player) {
         super();

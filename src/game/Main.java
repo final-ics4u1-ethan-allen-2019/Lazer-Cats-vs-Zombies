@@ -18,14 +18,14 @@ public class Main extends Game {
     public void load() {
         ArrayList<GameObject> objects = new ArrayList<>();
 
-        //GameObject objecto = new GameObject();
-
-        //objecto.x = 400;
-        //objecto.y = 400;
-
-        //objecto.addScript(new SpriteRenderer(TOP_LEFT_LIGHT_STONE_DENT.getImage(), 64, 64));
-
-        //objects.add(objecto);
+//        GameObject objecto = new GameObject();
+//
+//        objecto.x = 400;
+//        objecto.y = 400;
+//
+//        objecto.addScript(new SpriteRenderer(TOP_LEFT_LIGHT_STONE_DENT.getImage(), 64, 64));
+//
+//        objects.add(objecto);
 
         GameObject object = new PlayerObject(new Player(Player.BodyType.TANNED2, Player.Gender.MALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED, Player.HairType.BANGS, Player.HairColor.BLUE));
 
