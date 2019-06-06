@@ -2,7 +2,7 @@ package game.player;
 
 import engine.Draw;
 import engine.Game;
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.Time;
 import engine.input.KeyboardInput;
 import engine.input.MouseInput;
@@ -183,7 +183,7 @@ public class PlayerScript extends Script {
             }
         }
 
-        SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2)+32, parent.y-(Game.getHeight()/2)+32);
+        SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));
     }
 
     public void itemsChanged() {

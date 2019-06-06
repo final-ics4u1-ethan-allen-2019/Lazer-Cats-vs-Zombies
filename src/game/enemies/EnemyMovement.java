@@ -1,7 +1,7 @@
 package game.enemies;
 
 import engine.Draw;
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.Time;
 import engine.math.Vector2;
 import engine.scenes.SceneManager;

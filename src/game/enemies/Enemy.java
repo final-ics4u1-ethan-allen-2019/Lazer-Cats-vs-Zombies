@@ -1,6 +1,6 @@
 package game.enemies;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.math.Vector2;
 import engine.scripts.Animator;
 import engine.scripts.SpriteRenderer;

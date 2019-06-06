@@ -1,6 +1,6 @@
 package engine.scenes;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.mapping.Map;
 import engine.math.Vector2;
 

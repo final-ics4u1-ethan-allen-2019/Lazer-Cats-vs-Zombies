@@ -1,6 +1,6 @@
 package engine.mapping;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 
 public class Map extends GameObject {
 

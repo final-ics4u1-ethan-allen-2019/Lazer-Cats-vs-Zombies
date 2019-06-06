@@ -2,13 +2,17 @@ package game;
 
 import engine.Cropper;
 import engine.Game;
-import engine.GameObject;
+import engine.math.Vector2;
+import engine.objects.Button;
+import engine.objects.GameObject;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
+import engine.scripts.SpriteRenderer;
 import game.enemies.Enemy;
 import game.player.Player;
 import game.player.PlayerObject;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -27,16 +31,11 @@ public class Main extends Game {
 //
 //        objects.add(objecto);
 
-        GameObject object = new PlayerObject(new Player(Player.BodyType.TANNED2, Player.Gender.MALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED, Player.HairType.BANGS, Player.HairColor.BLUE));
 
-        object.x = 400;
-        object.y = 400;
-
-        objects.add(object);
 
         objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));
 
-        object = new GameObject();
+        GameObject object = new GameObject();
 
         object.addScript(new Borders());
 
@@ -46,35 +45,112 @@ public class Main extends Game {
 
         SceneManager.addScene(scene);
 
-        SceneManager.setScene(0);
+        SceneManager.addScene(createCharacterSelect());
+
+        SceneManager.setScene(1);
     }
 
-    private ArrayList[] create_sheet(Image image, int length) {
-        Cropper cropper = new Cropper(image);
-        ArrayList<Image> images = new ArrayList<>();
-        for (int x = 1; x < length; x++) {
-            images.add(cropper.crop(64*x,512,64,64));
-        }
-        ArrayList<Image> images1 = new ArrayList<>();
-        for (int x = 1; x < length; x++) {
-            images1.add(cropper.crop(64*x,576,64,64));
-        }
-        ArrayList<Image> images2 = new ArrayList<>();
-        for (int x = 1; x < length; x++) {
-            images2.add(cropper.crop(64*x,640,64,64));
-        }
-        ArrayList<Image> images3 = new ArrayList<>();
-        for (int x = 1; x < length; x++) {
-            images3.add(cropper.crop(64*x,704,64,64));
-        }
-        ArrayList<Image> images4 = new ArrayList<>();
-        for (int x = 0; x < 1; x++) {
-            images4.add(cropper.crop(64*x,640,64,64));
-        }
+    private static GameScene createCharacterSelect() {
+        ArrayList<GameObject> objects = new ArrayList<>();
 
-        return new ArrayList[] {images, images1, images2, images3, images4};
+        GameObject object = new GameObject();
+        object.y = (Game.getHeight()/2)-200;
+        object.x = (Game.getWidth()/2)-160;
+
+        SpriteRenderer body = new SpriteRenderer(Player.BodyType.values()[0].getGender(Player.Gender.MALE)[2].get(0), 320, 320);
+        object.addScript(body);
+
+        SpriteRenderer hair = new SpriteRenderer(Player.HairType.values()[0].getSet(Player.HairColor.BLUE)[2].get(0), 320, 320);
+        object.addScript(hair);
+
+        SpriteRenderer eyes = new SpriteRenderer(Player.EyeColor.values()[0].images[2].get(0), 320, 320);
+        object.addScript(eyes);
+
+        SpriteRenderer ear = new SpriteRenderer(Player.BodyType.values()[0].getEars(Player.EarType.ELVENEARS)[2].get(0), 320, 320);
+        object.addScript(ear);
+
+        SpriteRenderer nose = new SpriteRenderer(Player.BodyType.values()[0].getNose(Player.NoseType.BIGNOSE)[2].get(0), 320, 320);
+        object.addScript(nose);
+
+        CharacterSelect c = new CharacterSelect(body, hair, eyes, ear, nose);
+        object.addScript(c);
+
+        objects.add(object);
+
+        Button b = new Button(new Vector2(64*7, 350), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevBody);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*12)+32, 350), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextBody);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*7, 230), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevHair);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*12)+32, 230), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextHair);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*6, 230), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevHairColor);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*13)+32, 230), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextHairColor);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*7, 270), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevEye);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*12)+32, 270), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextEye);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*7, 310), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevEar);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*12)+32, 310), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextEar);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*6, 350), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevGender);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*13)+32, 350), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextGender);
+        objects.add(b);
+
+        b = new Button(new Vector2(64*7, 390), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "<-");
+        b.setOnClick(c::prevNose);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*12)+32, 390), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "->");
+        b.setOnClick(c::nextNose);
+        objects.add(b);
+
+        b = new Button(new Vector2((64*16)+32, 600), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "GO");
+        b.setOnClick(() -> {
+            GameObject obj = new PlayerObject(c.makePlayer());
+
+            obj.x = 400;
+            obj.y = 400;
+
+            SceneManager.setScene(0);
+            SceneManager.getCurrentGameScene().spawnObject(obj);
+        });
+        objects.add(b);
+
+
+
+        return new GameScene(objects);
     }
 
+    // Create spritesheet array
     public static ArrayList<Image>[] loadCharArray(Image image) {
         ArrayList<ArrayList> im = new ArrayList<>();
         Cropper crop = new Cropper(image);

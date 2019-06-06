@@ -1,6 +1,6 @@
 package game.player;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.scripts.Animator;
 import engine.scripts.SpriteRenderer;
 import javafx.scene.image.Image;
