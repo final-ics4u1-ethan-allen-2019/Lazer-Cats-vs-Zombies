@@ -42,6 +42,9 @@ public class GameScene {
     }
 
     public void render() {
+        for (Map map : maps){
+            map.render();
+        }
         for (GameObject object : active) {
             object.render();
         }
@@ -50,6 +53,13 @@ public class GameScene {
     public void spawnObject(GameObject object) {
         object.load();
         active.add(object);
+    }
+
+    public void addMap(Map map){
+        if (maps == null){
+            maps = new ArrayList<>();
+        }
+        maps.add(map);
     }
 
 }

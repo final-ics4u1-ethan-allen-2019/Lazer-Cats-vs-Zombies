@@ -3,6 +3,7 @@ package game;
 import engine.Cropper;
 import engine.Game;
 import engine.GameObject;
+import engine.mapping.DynamicMap;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import game.player.Player;
@@ -26,6 +27,9 @@ public class Main extends Game {
 
         //objects.add(objecto);
 
+        DynamicMap map = MapGenerator.generateDynamicMap("maps/BiggestGay.txt");
+
+
         GameObject object = new PlayerObject(new Player(Player.BodyType.TANNED2, Player.Gender.MALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED, Player.HairType.BANGS, Player.HairColor.BLUE));
 
         object.x = 400;
@@ -40,6 +44,8 @@ public class Main extends Game {
         objects.add(object);
 
         GameScene scene = new GameScene(objects);
+
+        scene.addMap(map);
 
         SceneManager.addScene(scene);
 

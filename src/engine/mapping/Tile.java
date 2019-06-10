@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 
 public class Tile extends GameObject {
 
-    private Image img;
-    private Rect rect;
+    protected Image img;
+    protected Rect rect;
     public Tile(){
         super();
         img = null;
@@ -28,16 +28,26 @@ public class Tile extends GameObject {
         this.rect = rect;
     }
 
-    public Tile(Image img, int x, int y, int width, int height){
+    public Tile(Image img, double x, double y, double width, double height){
         super();
         this.img = img;
         this.rect = new Rect(x, y, width, height);
     }
 
+
+
     @Override
     public void render(){
-        Draw.drawImage(img, rect.x, rect.y, rect.width, rect.length);
+        System.out.println(rect.x);
+        Draw.drawImage(img, rect.x, rect.y, rect.width, rect.height);
     }
 
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
+    public Rect getRect(){
+        return this.rect;
+    }
 
 }
