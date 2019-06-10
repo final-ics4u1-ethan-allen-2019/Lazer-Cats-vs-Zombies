@@ -1,6 +1,6 @@
 package engine.scripts;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 
 public class Script {
 

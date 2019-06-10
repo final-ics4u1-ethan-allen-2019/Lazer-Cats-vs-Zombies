@@ -1,6 +1,6 @@
 package engine.mapping;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 import javafx.scene.image.Image;
 
 public class Map extends GameObject {

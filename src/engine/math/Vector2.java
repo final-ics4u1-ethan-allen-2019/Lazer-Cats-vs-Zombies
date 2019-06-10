@@ -15,6 +15,30 @@ public class Vector2 {
         y = 0;
     }
 
+    public Vector2 multiply(double val) {
+        return new Vector2(this.x * val, this.y * val);
+    }
+
+    public Vector2 add(Vector2 vector2) {
+        return new Vector2(this.x + vector2.x, this.y + vector2.y);
+    }
+
+    public Vector2 add(double x, double y) {
+        return new Vector2(this.x + x, this.y + y);
+    }
+
+    public Vector2 subtract(Vector2 vector2) {
+        return new Vector2(this.x - vector2.x, this.y - vector2.y);
+    }
+
+    public Vector2 subtract(double x, double y) {
+        return new Vector2(this.x - x, this.y - y);
+    }
+
+    public double hypot() {
+        return Math.hypot(this.x, this.y);
+    }
+
     public Vector2 copy() {
         return new Vector2(x, y);
     }

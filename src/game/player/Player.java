@@ -16,13 +16,17 @@ public class Player {
     private HairType hairType;
     private HairColor hairColor;
 
-    private Weapons leftHand, rightHand = Weapons.SPEAR;
+    private Weapons leftHand, rightHand;
 
-    private Clothes torso, pants, head;
+    private Clothes torso, pants = Clothes.SKIRT, head;
 
-    private Helmet helmet = Helmet.SPEAR;
-    private ChestPlate chestPlate = ChestPlate.CHAIN;
-    private Leggings leggings = Leggings.METAL;
+    private Helmet helmet;
+    private ChestPlate chestPlate;
+    private Leggings leggings;
+
+    private int health = 50;
+
+    private Runnable onDeath;
 
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;
@@ -104,6 +108,29 @@ public class Player {
 
     public void setLeggings(Leggings leggings) {
         this.leggings = leggings;
+    }
+
+    public void setOnDeath(Runnable onDeath) {
+        this.onDeath = onDeath;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void damage(int amount) {
+        if (health != 0) {
+            health -= amount;
+            if (health <= 0) {
+                health = 0;
+                onDeath.run();
+            }
+        }
+    }
+
+    public void heal(int amount) {
+        health += amount;
+        if (health > 50) health = 50;
     }
 
     public enum BodyType {
@@ -201,7 +228,7 @@ public class Player {
         RED(),
         YELLOW();
 
-        final ArrayList<Image>[] images;
+        public final ArrayList<Image>[] images;
         EyeColor() {
             images = Main.loadCharArray(new Image("game/images/spritesheets/body/male/eyes/" + this.name().toLowerCase() + ".png"));
         }

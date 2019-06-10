@@ -4,9 +4,11 @@ import engine.math.Vector2;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class Draw {
 
@@ -50,6 +52,7 @@ public class Draw {
 
     public static void drawImage(Image image, double x, double y, double width, double height, boolean ui) {
         Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        BlendMode m = graphics.getGlobalBlendMode();
         graphics.drawImage(image, x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0), width, height);
     }
 
@@ -68,6 +71,12 @@ public class Draw {
 
     public static void drawText(String text, double x, double y) {
         drawText(text, x, y,false);
+    }
+
+    public static double textSize(String text) {
+        Text text1 = new Text(text);
+        text1.setFont(graphics.getFont());
+        return text1.getBoundsInLocal().getWidth();
     }
 
     public static void clear() {

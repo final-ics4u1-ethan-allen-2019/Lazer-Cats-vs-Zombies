@@ -1,6 +1,6 @@
 package game.player;
 
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.scripts.Animator;
 import engine.scripts.SpriteRenderer;
 import javafx.scene.image.Image;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class PlayerObject extends GameObject {
 
-    Player player;
+    public Player player;
 
     public PlayerObject(Player player) {
         super();

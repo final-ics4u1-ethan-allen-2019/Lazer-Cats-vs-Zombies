@@ -1,7 +1,7 @@
 package engine.mapping;
 
 import engine.Draw;
-import engine.GameObject;
+import engine.objects.GameObject;
 import engine.Rect;
 import javafx.scene.image.Image;
 
