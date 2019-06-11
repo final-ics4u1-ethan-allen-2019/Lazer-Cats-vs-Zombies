@@ -4,6 +4,7 @@ import engine.objects.GameObject;
 import engine.mapping.Map;
 import engine.math.Vector2;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameScene {
@@ -20,6 +21,11 @@ public class GameScene {
 
     public GameScene(ArrayList<GameObject> objects) {
         inactive = objects;
+    }
+    public GameScene(ArrayList<GameObject> objects, ArrayList<Map> maps1) {
+        inactive = objects;
+        System.out.println(maps1.size());
+        this.maps = (ArrayList<Map>) maps1.clone();
     }
 
     void unload() {
@@ -46,6 +52,12 @@ public class GameScene {
     }
 
     public void render() {
+        
+        if (maps != null) {
+            for (Map map : maps) {
+                map.render();
+            }
+        }
         for (GameObject object : active) {
             object.render();
         }

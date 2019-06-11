@@ -10,7 +10,7 @@ import java.io.*;
 public class MapGenerator {
 
     public static DynamicMap generateDynamicMap(String url){
-        DynamicMap map = new DynamicMap(url);
+        DynamicMap map = new DynamicMap(32, 32, 100, 100);
         try {
             FileReader fileReader = new FileReader(url);
             BufferedReader reader = new BufferedReader(fileReader);
@@ -18,8 +18,11 @@ public class MapGenerator {
             while ((line = reader.readLine()) != null){
                 String[] txt = line.split(" ");
                 for (String s : txt){
-                    System.out.print(s);
-                    map.addTile(TextureClassifier.BackgroundTiles.values()[Integer.parseInt(s)].getImage());
+                    for (TextureClassifier.BackgroundTiles b : TextureClassifier.BackgroundTiles.values()){
+                        if (b.getId() == Integer.parseInt(s)){
+                            map.addTile(b.getImage());
+                        }
+                    }
                 }
                 map.addRow();
             }

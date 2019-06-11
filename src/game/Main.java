@@ -2,6 +2,8 @@ package game;
 
 import engine.Cropper;
 import engine.Game;
+import engine.mapping.DynamicMap;
+import engine.mapping.Map;
 import engine.math.Vector2;
 import engine.objects.Button;
 import engine.objects.GameObject;
@@ -31,8 +33,10 @@ public class Main extends Game {
 //
 //        objects.add(objecto);
 
-
-
+        ArrayList<Map> maps = new ArrayList<Map>();
+        System.out.println(MapGenerator.generateDynamicMap("src/maps/LavaMap.txt"));
+        maps.add(MapGenerator.generateDynamicMap("src/maps/LavaMap.txt"));
+        System.out.print(maps.size());
         objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));
 
         GameObject object = new GameObject();
@@ -41,7 +45,7 @@ public class Main extends Game {
 
         objects.add(object);
 
-        GameScene scene = new GameScene(objects);
+        GameScene scene = new GameScene(objects, maps);
 
         SceneManager.addScene(scene);
 

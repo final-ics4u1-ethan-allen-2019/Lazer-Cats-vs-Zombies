@@ -12,4 +12,9 @@ public class GameTile extends Tile {
         this.tileType = tileType;
     }
 
+    @Override
+    public void render(){
+
+    }
+
 }

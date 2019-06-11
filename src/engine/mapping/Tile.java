@@ -36,6 +36,8 @@ public class Tile extends GameObject {
 
     @Override
     public void render(){
+
+        System.out.print(img);
         Draw.drawImage(img, rect.x, rect.y, rect.width, rect.height);
     }
 
