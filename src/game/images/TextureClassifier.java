@@ -244,7 +244,8 @@ public class TextureClassifier {
         REVERSE_CLIFF_LEFT_CORNER (156, backgroundList.get(5).get(30)),
         REVERSE_CLIFF_RIGHT_CORNER (157, backgroundList.get(5).get(31)),
 
-        //STILL MORE
+        //Extras
+        TRANSPARENT_TILE (401, backgroundList.get(13).get(29))
         ;
 
         private final int id;
