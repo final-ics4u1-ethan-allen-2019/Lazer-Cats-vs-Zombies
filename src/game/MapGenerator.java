@@ -20,19 +20,13 @@ public class MapGenerator {
             while ((line = reader.readLine()) != null){
                 String[] txt = line.split(" ");
                 for (String s : txt){
-                    /*
-                    for (TextureClassifier.BackgroundTiles b : TextureClassifier.BackgroundTiles.values()){
+
+                    for (BackgroundTiles b : BackgroundTiles.values()){
                         if (b.getId() == Integer.parseInt(s)){
                             System.out.print(s + " ");
                             map.addTile(b.getImage());
                         }
                     }
-                     */
-
-                     if (Integer.parseInt(s) == 401) {map.addTile(BackgroundTiles.TRANSPARENT_TILE.getImage()); }
-                     else {
-                         map.addTile(BackgroundTiles.values()[Integer.parseInt(s)].getImage());
-                     }
                 }
                 map.addRow();
             }
