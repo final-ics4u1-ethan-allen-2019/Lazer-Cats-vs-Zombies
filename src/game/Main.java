@@ -13,6 +13,7 @@ import engine.scripts.SpriteRenderer;
 import game.enemies.Enemy;
 import game.player.Player;
 import game.player.PlayerObject;
+import game.worldobjects.Chest;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -45,6 +46,9 @@ public class Main extends Game {
 
         objects.add(object);
 
+        objects.add(new Chest());
+
+        //GameScene scene = new GameScene(objects);
         GameScene scene = new GameScene(objects, maps);
 
         SceneManager.addScene(scene);

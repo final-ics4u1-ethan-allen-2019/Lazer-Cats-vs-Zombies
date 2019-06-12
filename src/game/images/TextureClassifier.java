@@ -15,10 +15,7 @@ public class TextureClassifier {
     //Make different enums for different categories of images
     public enum stills {
 
-        GOTTEM (0, "game/images/GOTCHA.jpg"),
-        HUMAN(0, "game/images/spritesheets/body/male/light.png"),
-        SKIRT(0, "game/images/spritesheets/legs/skirt/male/brown.png"),
-        CATE (0, "game/images/CATE.jpg");
+        CHESTS (0, "game/images/chests.png");
 
         private final int id;
         private final String url;

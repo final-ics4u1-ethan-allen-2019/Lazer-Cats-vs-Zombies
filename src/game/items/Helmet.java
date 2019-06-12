@@ -17,10 +17,13 @@ public enum Helmet {
 
     public ArrayList<Image>[] setMale;
     public ArrayList<Image>[] setFemale;
+    public Image icon;
 
     Helmet() {
         setMale = Main.loadCharArray(new Image("game/images/spritesheets/head/armor/male/" + this.name().toLowerCase() + ".png"));
         setFemale = Main.loadCharArray(new Image("game/images/spritesheets/head/armor/female/" + this.name().toLowerCase() + ".png"));
+
+        icon = new Image("game/images/icons/armor/helmet/" + this.name().toLowerCase() + "_icon.png");
     }
 
     public ArrayList<Image>[] getSet(Player.Gender gender) {
