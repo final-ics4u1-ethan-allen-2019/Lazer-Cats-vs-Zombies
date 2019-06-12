@@ -1,6 +1,7 @@
 package engine.mapping;
 
 import engine.objects.GameObject;
+import engine.scenes.GameScene;
 import javafx.scene.image.Image;
 
 public class Map extends GameObject {
@@ -11,6 +12,7 @@ public class Map extends GameObject {
     protected int tileHeight;
     protected int mapWidth;
     protected int mapHeight;
+    protected GameScene scene;
 
     public Map(Tile[][] map, String mapData){
         if (map != null) {
@@ -66,5 +68,13 @@ public class Map extends GameObject {
                 tile.render();
             }
         }
+    }
+
+    public void setScene(GameScene scene) {
+        this.scene = scene;
+    }
+
+    public GameScene getScene() {
+        return scene;
     }
 }

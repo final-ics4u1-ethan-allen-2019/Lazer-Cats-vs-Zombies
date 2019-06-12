@@ -34,7 +34,7 @@ public class Main extends Game {
 //        objects.add(objecto);
 
         ArrayList<Map> maps = new ArrayList<Map>();
-        System.out.println(MapGenerator.generateDynamicMap("src/maps/LavaMap.txt"));
+        maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt"));
         maps.add(MapGenerator.generateDynamicMap("src/maps/LavaMap.txt"));
         System.out.print(maps.size());
         objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));

@@ -10,6 +10,8 @@ public class Tile extends GameObject {
 
     protected Image img;
     protected Rect rect;
+    protected Map map;
+
     public Tile(){
         super();
         img = null;
@@ -36,9 +38,9 @@ public class Tile extends GameObject {
 
     @Override
     public void render(){
-
-        System.out.print(img);
-        Draw.drawImage(img, rect.x, rect.y, rect.width, rect.height);
+        if (map.getScene().camera.isIn(this.rect.getRect()[0]) || map.getScene().camera.isIn(this.rect.getRect()[1]) || map.getScene().camera.isIn(this.rect.getRect()[0].x, this.rect.getRect()[1].y) || map.getScene().camera.isIn(this.rect.getRect()[1].x, this.rect.getRect()[0].y)){
+            Draw.drawImage(img, rect.x, rect.y, rect.width, rect.height);
+        }
     }
 
     public void setImg(Image img) {
@@ -49,4 +51,7 @@ public class Tile extends GameObject {
         return this.rect;
     }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
 }

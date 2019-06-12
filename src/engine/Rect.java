@@ -53,7 +53,7 @@ public class Rect {
         updateRect();
     }
 
-    private void updateRect(){
+    public void updateRect(){
         rect[0].x = x;
         rect[0].y = y;
         rect[1].x = x + width;
@@ -67,7 +67,13 @@ public class Rect {
 
     public boolean isIn(double x, double y){
         if (x > this.x && x < rect[1].x && y > this.y && y < rect[1].y){
-            System.out.println("X: " + this.x + "   Y: " + this.y + "   X2: " + rect[1].x + "   Y2: " + rect[1].y);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isIn(Vector2 vector){
+        if (vector.x > this.x && vector.x < rect[1].x && vector.y > this.y && vector.y < rect[1].y){
             return true;
         }
         return false;

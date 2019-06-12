@@ -1,11 +1,14 @@
 package engine.mapping;
 
 import engine.Rect;
+import engine.scenes.GameScene;
 import javafx.scene.image.*;
 import java.util.ArrayList;
 
 public class DynamicMap extends Map {
-    //WIP
+
+
+
     protected ArrayList<ArrayList<Tile>> tileMap;
 
 
@@ -30,6 +33,7 @@ public class DynamicMap extends Map {
         } else if (tileMap.size() <= 1){
             addRow();
         }
+        tile.setMap(this);
         if (tileMap.get(tileMap.size() - 1).size() == 0) {
             tileMap.get(tileMap.size() - 1).add(tile);
         } else{
@@ -43,15 +47,25 @@ public class DynamicMap extends Map {
         if (tileMap == null){
             tileMap = new ArrayList<>();
             addRow();
-        } else if (tileMap.size() <= 1){
+        } else if (tileMap.size() < 1){
             addRow();
         }
+
         if (tileMap.get(tileMap.size() - 1).size() == 0) {
-            tileMap.get(tileMap.size() - 1).add(new Tile(img, 0, tileMap.size() * tileHeight, tileWidth, tileHeight));
+           // System.out.printf("X: %d Y: %d   -   ", 0 , (tileMap.size()-1) * tileHeight);
+            Tile tile = new Tile(img, 0, (tileMap.size()-1) * tileHeight, tileWidth, tileHeight);
+            tile.setMap(this);
+            tileMap.get(tileMap.size() - 1).add(tile);
+           // System.out.print(tileMap.size() - 1);
+
         } else{
+           // System.out.print(tileMap.size() - 1);
             ArrayList<Tile> row = tileMap.get(tileMap.size() - 1);
             Rect lastTile = row.get(row.size() - 1).getRect();
-            tileMap.get(tileMap.size() - 1).add(new Tile(img, (int)(lastTile.x + tileWidth), (int)(lastTile.y), tileWidth, tileHeight));
+           // System.out.printf("X: %d Y: %d   -   ", (int)(lastTile.x ) , (int)(lastTile.y));
+            Tile tile = new Tile(img, (int)(lastTile.x + tileWidth), (int)(lastTile.y), tileWidth, tileHeight);
+            tile.setMap(this);
+            tileMap.get(tileMap.size() - 1).add(tile);
         }
     }
 
@@ -62,7 +76,9 @@ public class DynamicMap extends Map {
         for (int y = 0; y < tileHeight; y++){
             addRow();
             for (int x = 0; x < tileWidth; x++){
-                addTile(new Tile(img, x* tileWidth, y *tileHeight, tileWidth, tileHeight ));
+                Tile tile = new Tile(img, x* tileWidth, y *tileHeight, tileWidth, tileHeight );
+                tile.setMap(this);
+                addTile(tile);
             }
         }
     }
@@ -73,4 +89,6 @@ public class DynamicMap extends Map {
 
     @Override
     public void render(){  tileMap.forEach(tileList -> { tileList.forEach(tile -> {tile.render();}); }); }
+
+
 }
