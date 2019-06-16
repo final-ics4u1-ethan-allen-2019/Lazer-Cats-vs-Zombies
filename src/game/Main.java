@@ -2,17 +2,18 @@ package game;
 
 import engine.Cropper;
 import engine.Game;
+import engine.mapping.DynamicMap;
+import engine.mapping.Map;
 import engine.math.Vector2;
 import engine.objects.Button;
 import engine.objects.GameObject;
-import engine.GameObject;
-import engine.mapping.DynamicMap;
 import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import engine.scripts.SpriteRenderer;
 import game.enemies.Enemy;
 import game.player.Player;
 import game.player.PlayerObject;
+import game.worldobjects.Chest;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -33,12 +34,10 @@ public class Main extends Game {
 //
 //        objects.add(objecto);
 
-        DynamicMap map = MapGenerator.generateDynamicMap("maps/BiggestGay.txt");
-
-
-        GameObject object = new PlayerObject(new Player(Player.BodyType.TANNED2, Player.Gender.MALE, Player.NoseType.BIGNOSE, Player.EarType.ELVENEARS, Player.EyeColor.RED, Player.HairType.BANGS, Player.HairColor.BLUE));
-
-
+        ArrayList<Map> maps = new ArrayList<Map>();
+        maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt"));
+        maps.add(MapGenerator.generateDynamicMap("src/maps/LavaMap.txt"));
+        System.out.print(maps.size());
         objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));
 
         GameObject object = new GameObject();
@@ -47,9 +46,10 @@ public class Main extends Game {
 
         objects.add(object);
 
-        GameScene scene = new GameScene(objects);
+        objects.add(new Chest());
 
-        scene.addMap(map);
+        //GameScene scene = new GameScene(objects);
+        GameScene scene = new GameScene(objects, maps);
 
         SceneManager.addScene(scene);
 
@@ -145,8 +145,8 @@ public class Main extends Game {
         b.setOnClick(() -> {
             GameObject obj = new PlayerObject(c.makePlayer());
 
-            obj.x = 400;
-            obj.y = 400;
+            obj.x = 1000;
+            obj.y = 1000;
 
             SceneManager.setScene(0);
             SceneManager.getCurrentGameScene().spawnObject(obj);

@@ -22,6 +22,7 @@ public enum Weapons {
 
     public final ArrayList<Image>[] imageSetMale;
     public final ArrayList<Image>[] imageSetFemale;
+    public Image icon;
 
     Weapons(HoldType holdType, AttackType attackType, Player.Gender gender) {
         this.holdType = holdType;
@@ -40,6 +41,7 @@ public enum Weapons {
                 imageSetFemale = Main.loadCharArray(new Image("game/images/spritesheets/weapons/" + this.holdType.name().toLowerCase().replace("_", " ") + "/female/" + this.name().toLowerCase() + "_female.png"));
             }
         }
+        icon = new Image("game/images/icons/weapons/" + this.name().toLowerCase() + "_icon.png");
     }
 
     public ArrayList<Image>[] getImageSet(Player.Gender gender) {

@@ -2,6 +2,7 @@ package game.player;
 
 import engine.Draw;
 import engine.Game;
+import engine.mapping.Map;
 import engine.objects.GameObject;
 import engine.Time;
 import engine.input.KeyboardInput;
@@ -12,6 +13,8 @@ import engine.scripts.Animator;
 import engine.scripts.Script;
 import engine.scripts.SpriteRenderer;
 import game.enemies.Enemy;
+import game.worldobjects.Chest;
+import game.worldobjects.ChestScript;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
@@ -25,6 +28,9 @@ public class PlayerScript extends Script {
     private Player player;
 
     private boolean hasAttacked = false;
+
+    private boolean oo = false;
+    private boolean o = false;
 
     public PlayerScript(Animator leftHand, Animator rightHand, Animator torso, Animator pants, Animator head) {
         this.leftHand = leftHand;
@@ -63,7 +69,7 @@ public class PlayerScript extends Script {
             animator.setCurrent(animators.get(0).getCurrent());
         }
 
-        if (player.getHealth() > 0) {
+        if (player.getHealth() > 0 && o) {
             // Direction
             int ang = (int) (Math.toDegrees(Math.atan2(((Game.getHeight() / 2) - MouseInput.y), (Game.getWidth() / 2 - MouseInput.x)))) + 180;
             int dir;
@@ -143,36 +149,44 @@ public class PlayerScript extends Script {
                         break;
                 }
             }
-
+            Vector2 dVector = new Vector2(parent.x, parent.y);
             // Movement
             boolean moving = false;
             if (KeyboardInput.isKeyDown(KeyCode.W) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(8);
                 }
-                parent.y -= 200 * Time.deltaTime;
+                dVector.y -= 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.S) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(10);
                 }
-                parent.y += 200 * Time.deltaTime;
+                dVector.y += 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.A) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(9);
                 }
-                parent.x -= 200 * Time.deltaTime;
+                dVector.x -= 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.D) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(11);
                 }
-                parent.x += 200 * Time.deltaTime;
+                dVector.x += 200 * Time.deltaTime;
                 moving = true;
+            }
+            boolean movable = true;
+            for (Map map: SceneManager.getCurrentGameScene().getMaps()){
+                int[] coords = map.getCollidedTile(dVector);
+                if (map.getTile(coords[0], coords[1]).getTraversable()) {
+                    parent.x = dVector.x;
+                    parent.y = dVector.y;
+                }
             }
 
             // Static looking direction
@@ -181,6 +195,23 @@ public class PlayerScript extends Script {
                     animator.setState(21 + dir);
                 }
             }
+        }
+
+        if (KeyboardInput.isKeyDown(KeyCode.E) && !oo) {
+            for (GameObject object : SceneManager.getCurrentGameScene().getActive()) {
+                if (object instanceof Chest) {
+                    for (Script script : object.getScripts()) {
+                        if (script instanceof ChestScript) {
+                            if (o) ((ChestScript) script).open(player);
+                            else ((ChestScript) script).close();
+                        }
+                    }
+                }
+            }
+            o = !o;
+            oo = true;
+        } else if (!KeyboardInput.isKeyDown(KeyCode.E)) {
+            oo = false;
         }
 
         SceneManager.getCurrentGameScene().cameraPosition = new Vector2(parent.x-(Game.getWidth()/2), parent.y-(Game.getHeight()/2));

@@ -1,6 +1,8 @@
 package engine.mapping;
 
+import engine.math.Vector2;
 import engine.objects.GameObject;
+import engine.scenes.GameScene;
 import javafx.scene.image.Image;
 
 public class Map extends GameObject {
@@ -11,6 +13,7 @@ public class Map extends GameObject {
     protected int tileHeight;
     protected int mapWidth;
     protected int mapHeight;
+    protected GameScene scene;
 
     public Map(Tile[][] map, String mapData){
         if (map != null) {
@@ -59,14 +62,6 @@ public class Map extends GameObject {
         }
     }
 
-    public void setTileWidth(int tileWidth) {
-        this.tileWidth = tileWidth;
-    }
-
-    public void setTileHeight(int tileHeight) {
-        this.tileHeight = tileHeight;
-    }
-
     @Override
     public void render(){
         for (Tile[] row : tileMap) {
@@ -74,5 +69,41 @@ public class Map extends GameObject {
                 tile.render();
             }
         }
+    }
+
+
+    public int[] getCollidedTile(Vector2 vector){
+        for (int row = 0; row < tileMap.length; row ++){
+            for (int col = 0; col < tileMap[row].length; col++){
+                if (tileMap[row][col].getRect().isIn(vector.x, vector.y)){
+                    return new int[] {row, col};
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public int[] getCollidedTile(double x, double y){
+        for (int row = 0; row < tileMap.length; row ++){
+            for (int col = 0; col < tileMap[row].length; col++){
+                if (tileMap[row][col].getRect().isIn(x, y)){
+                    return new int[] {row, col};
+                }
+            }
+        }
+        return null;
+    }
+
+    public void setScene(GameScene scene) {
+        this.scene = scene;
+    }
+
+    public GameScene getScene() {
+        return scene;
+    }
+
+    public Tile getTile(int x, int y){
+        return tileMap[y][x];
     }
 }
