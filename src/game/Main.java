@@ -145,8 +145,8 @@ public class Main extends Game {
         b.setOnClick(() -> {
             GameObject obj = new PlayerObject(c.makePlayer());
 
-            obj.x = 400;
-            obj.y = 400;
+            obj.x = 1000;
+            obj.y = 1000;
 
             SceneManager.setScene(0);
             SceneManager.getCurrentGameScene().spawnObject(obj);

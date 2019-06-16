@@ -2,6 +2,7 @@ package game.player;
 
 import engine.Draw;
 import engine.Game;
+import engine.mapping.Map;
 import engine.objects.GameObject;
 import engine.Time;
 import engine.input.KeyboardInput;
@@ -148,36 +149,44 @@ public class PlayerScript extends Script {
                         break;
                 }
             }
-
+            Vector2 dVector = new Vector2(parent.x, parent.y);
             // Movement
             boolean moving = false;
             if (KeyboardInput.isKeyDown(KeyCode.W) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(8);
                 }
-                parent.y -= 200 * Time.deltaTime;
+                dVector.y -= 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.S) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(10);
                 }
-                parent.y += 200 * Time.deltaTime;
+                dVector.y += 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.A) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(9);
                 }
-                parent.x -= 200 * Time.deltaTime;
+                dVector.x -= 200 * Time.deltaTime;
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.D) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(11);
                 }
-                parent.x += 200 * Time.deltaTime;
+                dVector.x += 200 * Time.deltaTime;
                 moving = true;
+            }
+            boolean movable = true;
+            for (Map map: SceneManager.getCurrentGameScene().getMaps()){
+                int[] coords = map.getCollidedTile(dVector);
+                if (map.getTile(coords[0], coords[1]).getTraversable()) {
+                    parent.x = dVector.x;
+                    parent.y = dVector.y;
+                }
             }
 
             // Static looking direction
