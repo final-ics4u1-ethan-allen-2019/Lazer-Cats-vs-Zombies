@@ -16,12 +16,16 @@ public class MapGenerator {
             BackgroundTiles.LAVA_INVERSE_HOLE_TOP_RIGHT, BackgroundTiles.LAVA_POOL_CENTER_RIGHT,
             BackgroundTiles.LAVA_POOL_CENTER_LEFT, BackgroundTiles.LAVA_POOL_TOP_MIDDLE, BackgroundTiles.LAVA_POOL_BOTTOM_MIDDLE
     };
-    public static DynamicMap generateDynamicMap(String url){
-        DynamicMap map = new DynamicMap(32, 32, 100, 100);
+    public static DynamicMap generateDynamicMap(String url, int tileWidth, int tileHeight){
+        DynamicMap map = null;
         try {
             FileReader fileReader = new FileReader(url);
             BufferedReader reader = new BufferedReader(fileReader);
             String line;
+            int[] mapDimensions = getMapDimensions(fileReader);
+            fileReader = new FileReader(url);
+            reader = new BufferedReader(fileReader);
+            map = new DynamicMap(tileWidth, tileHeight, mapDimensions[0], mapDimensions[1]);
             while ((line = reader.readLine()) != null){
                 String[] txt = line.split(" ");
                 for (String s : txt){
@@ -53,8 +57,8 @@ public class MapGenerator {
         try {
             FileReader fileReader = new FileReader(url);
             BufferedReader reader = new BufferedReader(fileReader);
-            String line = reader.readLine();
-            Tile[][] tileMap = new Tile[countLines(url)][line.length()];
+            int[] mapDimensions = getMapDimensions(fileReader);
+            Tile[][] tileMap = new Tile[mapDimensions[0]][mapDimensions[1]];
 
         } catch (Exception e){
 
@@ -62,44 +66,22 @@ public class MapGenerator {
         return map;
     }
 
-    //MEGA COPY AND PASTE
-    public static int countLines(String filename) throws IOException {
-        InputStream is = new BufferedInputStream(new FileInputStream(filename));
+
+    public static int[] getMapDimensions(FileReader reader){
+        int length = 0;
+        int width = 0;
         try {
-            byte[] c = new byte[1024];
-
-            int readChars = is.read(c);
-            if (readChars == -1) {
-                // bail out if nothing to read
-                return 0;
+            BufferedReader bReader = new BufferedReader(reader);
+            width = (bReader.readLine()).split(" ").length;
+            length++;
+            while (bReader.readLine() != null) {
+                length++;
             }
+        } catch (Exception e){
 
-            // make it easy for the optimizer to tune this loop
-            int count = 0;
-            while (readChars == 1024) {
-                for (int i=0; i<1024;) {
-                    if (c[i++] == '\n') {
-                        ++count;
-                    }
-                }
-                readChars = is.read(c);
-            }
-
-            // count remaining characters
-            while (readChars != -1) {
-                System.out.println(readChars);
-                for (int i=0; i<readChars; ++i) {
-                    if (c[i] == '\n') {
-                        ++count;
-                    }
-                }
-                readChars = is.read(c);
-            }
-
-            return count == 0 ? 1 : count;
-        } finally {
-            is.close();
         }
+
+        return new int[] {width, length};
     }
 
 
