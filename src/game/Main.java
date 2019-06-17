@@ -11,6 +11,7 @@ import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import engine.scripts.SpriteRenderer;
 import game.enemies.Enemy;
+import game.images.TextureClassifier;
 import game.player.Player;
 import game.player.PlayerObject;
 import game.worldobjects.Chest;
@@ -25,14 +26,12 @@ public class Main extends Game {
     public void load() {
         ArrayList<GameObject> objects = new ArrayList<>();
 
-//        GameObject objecto = new GameObject();
-//
-//        objecto.x = 400;
-//        objecto.y = 400;
-//
-//        objecto.addScript(new SpriteRenderer(TOP_LEFT_LIGHT_STONE_DENT.getImage(), 64, 64));
-//
-//        objects.add(objecto);
+        GameObject objecto = new GameObject();
+        objecto.x = 400;
+        objecto.y = 400;
+
+        objecto.addScript(new SpriteRenderer(TextureClassifier.BackgroundTiles.WATER_TILE_1.getImage(), 64, 64));
+        objects.add(objecto);
 
         ArrayList<Map> maps = new ArrayList<Map>();
         maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt"));
@@ -49,7 +48,9 @@ public class Main extends Game {
 
         SceneManager.addScene(createCharacterSelect());
 
-        SceneManager.setScene(1);
+        SceneManager.addScene(createStartScene());
+
+        SceneManager.setScene(2);
     }
 
     private static GameScene createCharacterSelect() {
@@ -148,6 +149,29 @@ public class Main extends Game {
         objects.add(b);
 
         return new GameScene(objects);
+    }
+
+    public static GameScene createStartScene(){
+        ArrayList<GameObject> objects = new ArrayList<>();
+        ArrayList<Map> maps = new ArrayList<>();
+
+
+        Vector2 buttonSize = new Vector2(200,50);
+
+
+        Button b = new Button(new Vector2(640 - 400/2, 200 - 200/2), new Vector2(400,75), Color.WHITE, Color.WHITE, Color.WHITE, 32, "Lazer Cats vs Zombies");
+        objects.add(b);
+
+        b = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
+        b.setOnClick(() ->{
+            SceneManager.setScene(1);
+        });
+        objects.add(b);
+
+        maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt"));
+
+        GameScene scene = new GameScene(objects, maps);
+        return scene;
     }
 
     // Create spritesheet array

@@ -197,16 +197,18 @@ public class PlayerScript extends Script {
                 dVector.x += 200 * Time.deltaTime;
                 moving = true;
             }
-            boolean movable = true;
-            for (Map map: SceneManager.getCurrentGameScene().getMaps()){
-                int[] coords = map.getCollidedTile(dVector.x, dVector.y + 32);
-                if (!map.getTile(coords[0], coords[1]).getTraversable()) {
-                    movable = false;
+            if (SceneManager.getCurrentGameScene().getMaps() != null) {
+                boolean movable = true;
+                for (Map map : SceneManager.getCurrentGameScene().getMaps()) {
+                    int[] coords = map.getCollidedTile(dVector.x, dVector.y + 32);
+                    if (!map.getTile(coords[0], coords[1]).getTraversable()) {
+                        movable = false;
+                    }
                 }
-            }
-            if (movable){
-                parent.x = dVector.x;
-                parent.y = dVector.y;
+                if (movable) {
+                    parent.x = dVector.x;
+                    parent.y = dVector.y;
+                }
             }
 
             // Static looking direction

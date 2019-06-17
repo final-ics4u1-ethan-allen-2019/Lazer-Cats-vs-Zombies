@@ -69,9 +69,15 @@ public class Draw {
         graphics.fillText(text, x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0));
     }
 
+    public static void drawText(String text, double x, double y, int fontSize, boolean ui) {
+        Vector2 camPos = SceneManager.getCurrentGameScene().cameraPosition;
+        graphics.fillText(text, x - (!ui ? camPos.x : 0), y - (!ui ? camPos.y : 0), fontSize);
+    }
+
     public static void drawText(String text, double x, double y) {
         drawText(text, x, y,false);
     }
+
 
     public static double textSize(String text) {
         Text text1 = new Text(text);

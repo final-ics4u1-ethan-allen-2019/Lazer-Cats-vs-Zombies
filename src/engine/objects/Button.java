@@ -5,6 +5,7 @@ import engine.Time;
 import engine.input.MouseInput;
 import engine.math.Vector2;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Button extends GameObject {
 
@@ -19,6 +20,8 @@ public class Button extends GameObject {
 
     private String text;
 
+    private double fontSize;
+
     public Button(Vector2 pos, Vector2 size, Color hover, Color pressed, Color color, String text) {
         super();
         this.size = size;
@@ -29,6 +32,20 @@ public class Button extends GameObject {
         this.pressed = pressed;
         this.color = color;
         this.text = text;
+        fontSize = 10;
+    }
+
+    public Button(Vector2 pos, Vector2 size, Color hover, Color pressed, Color color, double fontSize, String text) {
+        super();
+        this.size = size;
+        this.x = pos.x;
+        this.y = pos.y;
+
+        this.hover = hover;
+        this.pressed = pressed;
+        this.color = color;
+        this.text = text;
+        this.fontSize = fontSize;
     }
 
     public void setOnHover(Runnable runnable) {
@@ -88,7 +105,8 @@ public class Button extends GameObject {
 
         Draw.setFill(Color.BLACK);
 
-        Draw.drawText(text, (x+(size.x/2))-(Draw.textSize(text)/2), (y+(size.y/1.5)), true);
+        Draw.setFont(new Font(fontSize));
+        Draw.drawText(text, (x + (size.x / 2)) - (Draw.textSize(text) / 2), (y + (size.y / 1.5)), true);
     }
 
 }
