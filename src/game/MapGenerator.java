@@ -14,7 +14,8 @@ public class MapGenerator {
     public static BackgroundTiles[] uncollidable = {BackgroundTiles.LAVA_TILE_0, BackgroundTiles.LAVA_INVERSE_HOLE_BOTTOM_LEFT,
             BackgroundTiles.LAVA_INVERSE_HOLE_BOTTOM_RIGHT, BackgroundTiles.LAVA_INVERSE_HOLE_TOP_LEFT,
             BackgroundTiles.LAVA_INVERSE_HOLE_TOP_RIGHT, BackgroundTiles.LAVA_POOL_CENTER_RIGHT,
-            BackgroundTiles.LAVA_POOL_CENTER_LEFT, BackgroundTiles.LAVA_POOL_TOP_MIDDLE, BackgroundTiles.LAVA_POOL_BOTTOM_MIDDLE
+            BackgroundTiles.LAVA_POOL_CENTER_LEFT, BackgroundTiles.LAVA_POOL_TOP_MIDDLE, BackgroundTiles.LAVA_POOL_BOTTOM_MIDDLE,
+            BackgroundTiles.LAVA_POOL_TOP_MIDDLE
     };
     public static DynamicMap generateDynamicMap(String url){
         DynamicMap map = new DynamicMap(32, 32, 100, 100);

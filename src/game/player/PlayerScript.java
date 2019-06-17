@@ -200,10 +200,13 @@ public class PlayerScript extends Script {
             boolean movable = true;
             for (Map map: SceneManager.getCurrentGameScene().getMaps()){
                 int[] coords = map.getCollidedTile(dVector);
-                if (map.getTile(coords[0], coords[1]).getTraversable()) {
-                    parent.x = dVector.x;
-                    parent.y = dVector.y;
+                if (!map.getTile(coords[0], coords[1]).getTraversable()) {
+                    movable = false;
                 }
+            }
+            if (movable){
+                parent.x = dVector.x;
+                parent.y = dVector.y;
             }
 
             // Static looking direction
