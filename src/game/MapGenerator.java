@@ -15,7 +15,8 @@ public class MapGenerator {
             BackgroundTiles.LAVA_INVERSE_HOLE_BOTTOM_RIGHT, BackgroundTiles.LAVA_INVERSE_HOLE_TOP_LEFT,
             BackgroundTiles.LAVA_INVERSE_HOLE_TOP_RIGHT, BackgroundTiles.LAVA_POOL_CENTER_RIGHT,
             BackgroundTiles.LAVA_POOL_CENTER_LEFT, BackgroundTiles.LAVA_POOL_TOP_MIDDLE, BackgroundTiles.LAVA_POOL_BOTTOM_MIDDLE,
-            BackgroundTiles.LAVA_POOL_TOP_MIDDLE
+            BackgroundTiles.LAVA_POOL_TOP_MIDDLE, BackgroundTiles.LAVA_POOL_TOP_LEFT, BackgroundTiles.LAVA_POOL_TOP_RIGHT,
+            BackgroundTiles.LAVA_POOL_BOTTOM_LEFT, BackgroundTiles.LAVA_POOL_BOTTOM_RIGHT
     };
     public static DynamicMap generateDynamicMap(String url){
         DynamicMap map = new DynamicMap(32, 32, 100, 100);

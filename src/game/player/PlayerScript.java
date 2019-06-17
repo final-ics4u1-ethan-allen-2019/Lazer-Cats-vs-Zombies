@@ -199,7 +199,7 @@ public class PlayerScript extends Script {
             }
             boolean movable = true;
             for (Map map: SceneManager.getCurrentGameScene().getMaps()){
-                int[] coords = map.getCollidedTile(dVector);
+                int[] coords = map.getCollidedTile(dVector.x, dVector.y + 32);
                 if (!map.getTile(coords[0], coords[1]).getTraversable()) {
                     movable = false;
                 }

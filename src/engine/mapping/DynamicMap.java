@@ -28,7 +28,7 @@ public class DynamicMap extends Map {
         for (int row = 0; row < tileMap.size(); row ++){
             for (int col = 0; col < tileMap.get(row).size(); col++){
                 if (tileMap.get(row).get(col).getRect().isIn(x, y)){
-                    return new int[] {row, col};
+                    return new int[] {col, row};
                 }
             }
         }
@@ -40,7 +40,7 @@ public class DynamicMap extends Map {
         for (int row = 0; row < tileMap.size(); row ++){
             for (int col = 0; col < tileMap.get(row).size(); col++){
                 if (tileMap.get(row).get(col).getRect().isIn(vector.x, vector.y)){
-                    return new int[] {row, col};
+                    return new int[] {col, row};
                 }
             }
         }
