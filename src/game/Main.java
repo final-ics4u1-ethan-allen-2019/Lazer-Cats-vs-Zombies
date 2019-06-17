@@ -40,12 +40,6 @@ public class Main extends Game {
         System.out.print(maps.size());
         objects.add(new Enemy("game/images/spritesheets/body/male/orc.png", 300, 600, 10));
 
-        GameObject object = new GameObject();
-
-        object.addScript(new Borders());
-
-        objects.add(object);
-
         objects.add(new Chest());
 
         //GameScene scene = new GameScene(objects);
