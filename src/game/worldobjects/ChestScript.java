@@ -5,7 +5,7 @@ import engine.scripts.Script;
 import engine.scripts.SpriteRenderer;
 import game.Inventory;
 import game.images.TextureClassifier;
-import game.player.Player;
+import game.player.PlayerObject;
 import javafx.scene.image.Image;
 
 public class ChestScript extends Script {
@@ -31,7 +31,7 @@ public class ChestScript extends Script {
         }
     }
 
-    public void open(Player player) {
+    public void open(PlayerObject player) {
         renderer.setImage(opened);
         inventory.open(player);
         inventory.generateRandomLoot();

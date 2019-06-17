@@ -23,7 +23,7 @@ public class MapGenerator {
 
                     for (BackgroundTiles b : BackgroundTiles.values()){
                         if (b.getId() == Integer.parseInt(s)){
-                            System.out.print(s + " ");
+                            //System.out.print(s + " ");
                             map.addTile(b.getImage());
                         }
                     }

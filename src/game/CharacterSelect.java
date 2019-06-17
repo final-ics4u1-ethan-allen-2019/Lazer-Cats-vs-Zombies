@@ -18,6 +18,22 @@ public class CharacterSelect extends Script {
         this.nose = nose;
     }
 
+    public void hide() {
+        this.body.hide();
+        this.hair.hide();
+        this.eyes.hide();
+        this.ears.hide();
+        this.nose.hide();
+    }
+
+    public void show() {
+        this.body.show();
+        this.hair.show();
+        this.eyes.show();
+        this.ears.show();
+        this.nose.show();
+    }
+
     public void nextBody() {
         b++;
         if (b == Player.BodyType.values().length) b = 0;

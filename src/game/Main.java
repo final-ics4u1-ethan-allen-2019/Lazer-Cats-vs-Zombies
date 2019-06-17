@@ -153,8 +153,6 @@ public class Main extends Game {
         });
         objects.add(b);
 
-
-
         return new GameScene(objects);
     }
 
@@ -200,7 +198,7 @@ public class Main extends Game {
     }
 
     public static void main(String[] args) {
-        new Main().begin(args, 1280, 720, "My name jef");
+        new Main().begin(args, 1280, 700, "My name jef");
     }
 
 }

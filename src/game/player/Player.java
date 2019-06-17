@@ -1,5 +1,6 @@
 package game.player;
 
+import game.Inventory;
 import game.Main;
 import game.items.*;
 import javafx.scene.image.Image;
@@ -16,7 +17,7 @@ public class Player {
     private HairType hairType;
     private HairColor hairColor;
 
-    private Weapons leftHand, rightHand;
+    private Weapons leftHand, rightHand = Weapons.BOW;
 
     private Clothes torso, pants = Clothes.SKIRT, head;
 
@@ -28,6 +29,8 @@ public class Player {
 
     private Runnable onDeath;
 
+    private Inventory inventory;
+
     public Player(BodyType bodyType, Gender gender, NoseType noseType, EarType earType, EyeColor eyeColor, HairType hairType, HairColor hairColor) {
         this.bodyType = bodyType;
         this.gender = gender;
@@ -36,6 +39,14 @@ public class Player {
         this.eyeColor = eyeColor;
         this.hairType = hairType;
         this.hairColor = hairColor;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inv) {
+        inventory = inv;
     }
 
     public BodyType getBodyType() {
@@ -108,6 +119,10 @@ public class Player {
 
     public void setLeggings(Leggings leggings) {
         this.leggings = leggings;
+    }
+
+    public void setRightHand(Weapons rightHand) {
+        this.rightHand = rightHand;
     }
 
     public void setOnDeath(Runnable onDeath) {
