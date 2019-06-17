@@ -1,9 +1,6 @@
 package engine.scripts;
 
-public class Collision {
+public class Collision extends Script {
 
-    public static boolean checkCollision(){
-        return false;
-    }
 
 }

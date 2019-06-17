@@ -80,4 +80,8 @@ public class GameScene {
     public ArrayList<GameObject> getActive() {
         return active;
     }
+
+    public ArrayList<Map> getMaps() {
+        return maps;
+    }
 }

@@ -1,5 +1,6 @@
 package engine.mapping;
 
+import engine.math.Vector2;
 import engine.objects.GameObject;
 import engine.scenes.GameScene;
 import javafx.scene.image.Image;
@@ -70,11 +71,39 @@ public class Map extends GameObject {
         }
     }
 
+
+    public int[] getCollidedTile(Vector2 vector){
+        for (int row = 0; row < tileMap.length; row ++){
+            for (int col = 0; col < tileMap[row].length; col++){
+                if (tileMap[row][col].getRect().isIn(vector.x, vector.y)){
+                    return new int[] {row, col};
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public int[] getCollidedTile(double x, double y){
+        for (int row = 0; row < tileMap.length; row ++){
+            for (int col = 0; col < tileMap[row].length; col++){
+                if (tileMap[row][col].getRect().isIn(x, y)){
+                    return new int[] {row, col};
+                }
+            }
+        }
+        return null;
+    }
+
     public void setScene(GameScene scene) {
         this.scene = scene;
     }
 
     public GameScene getScene() {
         return scene;
+    }
+
+    public Tile getTile(int x, int y){
+        return tileMap[y][x];
     }
 }
