@@ -22,16 +22,29 @@ import java.util.ArrayList;
 
 public class Main extends Game {
 
+    public enum Scenes {
+        GAME (0),
+        CHARACTERSELECT (1),
+        MAIN_MENU (2),
+        INSTRUCTIONS (3),
+        END (4),
+        ;
+
+        final private int sceneNum;
+        Scenes(int sceneNum){
+            this.sceneNum = sceneNum;
+        }
+
+        public int num(){
+            return this.sceneNum;
+        }
+    }
+
+    private static CharacterSelect c;
+
     @Override
     public void load() {
         ArrayList<GameObject> objects = new ArrayList<>();
-
-        GameObject objecto = new GameObject();
-        objecto.x = 400;
-        objecto.y = 400;
-
-        objecto.addScript(new SpriteRenderer(TextureClassifier.BackgroundTiles.WATER_TILE_1.getImage(), 64, 64));
-        objects.add(objecto);
 
         ArrayList<Map> maps = new ArrayList<Map>();
         maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt",32, 32));
@@ -51,6 +64,8 @@ public class Main extends Game {
         SceneManager.addScene(createStartScene());
 
         SceneManager.addScene(createIntructionScene());
+
+        SceneManager.addScene(createEndScene());
 
         SceneManager.setScene(2);
     }
@@ -77,7 +92,7 @@ public class Main extends Game {
         SpriteRenderer nose = new SpriteRenderer(Player.BodyType.values()[0].getNose(Player.NoseType.BIGNOSE)[2].get(0), 320, 320);
         object.addScript(nose);
 
-        CharacterSelect c = new CharacterSelect(body, hair, eyes, ear, nose);
+        c = new CharacterSelect(body, hair, eyes, ear, nose);
         object.addScript(c);
 
         objects.add(object);
@@ -145,7 +160,7 @@ public class Main extends Game {
             obj.x = 1000;
             obj.y = 1000;
 
-            SceneManager.setScene(0);
+            SceneManager.setScene(Scenes.GAME.num());
             SceneManager.getCurrentGameScene().spawnObject(obj);
         });
         objects.add(b);
@@ -166,19 +181,13 @@ public class Main extends Game {
 
         b = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
         b.setOnClick(() ->{
-            SceneManager.setScene(1);
-        });
-        objects.add(b);
-
-        b = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
-        b.setOnClick(() ->{
-            SceneManager.setScene(1);
+            SceneManager.setScene(Scenes.CHARACTERSELECT.num());
         });
         objects.add(b);
 
         b = new Button(new Vector2(640 - buttonSize.x/2, 250 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "INSTRUCTIONS");
         b.setOnClick(() ->{
-            SceneManager.setScene(3);
+            SceneManager.setScene(Scenes.INSTRUCTIONS.num());
         });
         objects.add(b);
 
@@ -198,18 +207,54 @@ public class Main extends Game {
         Vector2 buttonSize = new Vector2(200,50);
 
 
-        Button b = new Button(new Vector2(640 - textSize.x/2, 100 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "W, A, S, D to control");
+        Button b = new Button(new Vector2(640 - textSize.x/2, 100 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 32, "W, A, S, D to control");
         objects.add(b);
 
-        b = new Button(new Vector2(640 - textSize.x/2, 200 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "Don't Let the Goblins touch you");
+        b = new Button(new Vector2(640 - textSize.x/2, 200 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 32, "Don't Let the Goblins touch you");
         objects.add(b);
 
-        b = new Button(new Vector2(640 - textSize.x/2, 300 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "Left Click on enemies to attack");
+        b = new Button(new Vector2(640 - textSize.x/2, 300 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 32, "Left Click on enemies to attack");
         objects.add(b);
 
         b = new Button(new Vector2(1000 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Back");
         b.setOnClick(() ->{
-            SceneManager.setScene(2);
+            SceneManager.setScene(Scenes.MAIN_MENU.num());
+        });
+        objects.add(b);
+
+        return new GameScene(objects, maps);
+
+    }
+
+    private static GameScene createEndScene(){
+        ArrayList<GameObject> objects = new ArrayList<>();
+        ArrayList<Map> maps = new ArrayList<>();
+
+
+        Vector2 textSize = new Vector2(400,75);
+
+        Vector2 buttonSize = new Vector2(200,50);
+
+
+        Button b = new Button(new Vector2(640 - textSize.x/2, 200 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 56, "You Ded");
+        objects.add(b);
+
+
+        b = new Button(new Vector2(400 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Play Again");
+        b.setOnClick(() ->{
+            GameObject obj = new PlayerObject(c.makePlayer());
+
+            obj.x = 1000;
+            obj.y = 1000;
+
+            SceneManager.setScene(Scenes.GAME.num());
+            SceneManager.getCurrentGameScene().spawnObject(obj);
+        });
+        objects.add(b);
+
+        b = new Button(new Vector2(1000 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Back");
+        b.setOnClick(() ->{
+            SceneManager.setScene(Scenes.MAIN_MENU.num());
         });
         objects.add(b);
 
