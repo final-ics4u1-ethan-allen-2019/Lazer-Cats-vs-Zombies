@@ -12,6 +12,8 @@ public class SpriteRenderer extends Script {
 
     private Vector2 offset = new Vector2();
 
+    private boolean visible = true;
+
     /**
      * Makes a new SpriteRenderer.
      * @param image Image to draw.
@@ -39,13 +41,21 @@ public class SpriteRenderer extends Script {
         return this;
     }
 
+    public void hide() {
+        visible = false;
+    }
+
+    public void show() {
+        visible = true;
+    }
+
     public void setImage(Image image) {
         this.image = image;
     }
 
     @Override
     public void render() {
-        Draw.drawImage(image, parent.x+offset.x, parent.y+offset.y, width, height);
+        if (visible) Draw.drawImage(image, parent.x+offset.x, parent.y+offset.y, width, height);
     }
 
 }

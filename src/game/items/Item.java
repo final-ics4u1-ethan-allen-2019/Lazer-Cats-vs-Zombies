@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 public class Item {
 
-    private Enum type;
+    public Enum type;
 
     public Item(Enum type) {
         this.type = type;

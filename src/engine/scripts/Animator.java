@@ -68,6 +68,7 @@ public class Animator extends Script {
 
     public void setImages(ArrayList<Image>[] images) {
         this.images = images;
+        if (this.renderer != null) this.renderer.setImage(null);
     }
 
     public ArrayList<Image>[] getImages() {

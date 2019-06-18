@@ -48,6 +48,10 @@ public class EnemyMovement extends Script {
     public void update() {
         // Check to see if you should engage on a new target/stop engaging current
         if (enemy.getHealth() != 0) {
+            players = new ArrayList<>();
+            for (GameObject object : SceneManager.getCurrentGameScene().getActive()) {
+                if (object instanceof PlayerObject) players.add((PlayerObject) object);
+            }
             if ((engaged != null && Math.hypot(parent.x - engaged.x, parent.y - engaged.y) < enemy.disengageRange) || (engaged != null && engaged.player.getHealth() == 0)) engaged = null;
             for (PlayerObject player : players) {
                 if ((Math.hypot(parent.x - player.x, parent.y - player.y) < enemy.activeRange) && player.player.getHealth() != 0) {

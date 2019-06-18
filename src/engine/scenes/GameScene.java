@@ -27,7 +27,7 @@ public class GameScene {
     }
     public GameScene(ArrayList<GameObject> objects, ArrayList<Map> maps1) {
         inactive = objects;
-        System.out.println(maps1.size());
+        //System.out.println(maps1.size());
         this.maps = (ArrayList<Map>) maps1.clone();
         for (Map map : maps){
             map.setScene(this);

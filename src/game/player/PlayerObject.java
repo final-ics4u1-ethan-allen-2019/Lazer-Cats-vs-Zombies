@@ -3,6 +3,7 @@ package game.player;
 import engine.objects.GameObject;
 import engine.scripts.Animator;
 import engine.scripts.SpriteRenderer;
+import game.Inventory;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -84,6 +85,10 @@ public class PlayerObject extends GameObject {
 
         addScript(rightHandSr);
         addScript(rightHand);
+
+        Inventory inventory = new Inventory(12, 4, Inventory.InventoryType.PLAYER);
+        player.setInventory(inventory);
+        addScript(inventory);
 
         addScript(new PlayerScript(leftHand, rightHand, torso, pants, head));
 
