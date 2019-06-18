@@ -50,6 +50,8 @@ public class Main extends Game {
 
         SceneManager.addScene(createStartScene());
 
+        SceneManager.addScene(createIntructionScene());
+
         SceneManager.setScene(2);
     }
 
@@ -168,10 +170,51 @@ public class Main extends Game {
         });
         objects.add(b);
 
-        maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt"));
+        b = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
+        b.setOnClick(() ->{
+            SceneManager.setScene(1);
+        });
+        objects.add(b);
+
+        b = new Button(new Vector2(640 - buttonSize.x/2, 250 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "INSTRUCTIONS");
+        b.setOnClick(() ->{
+            SceneManager.setScene(3);
+        });
+        objects.add(b);
+
+        maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt", 32, 32));
 
         GameScene scene = new GameScene(objects, maps);
         return scene;
+    }
+
+    private static GameScene createIntructionScene(){
+        ArrayList<GameObject> objects = new ArrayList<>();
+        ArrayList<Map> maps = new ArrayList<>();
+
+
+        Vector2 textSize = new Vector2(400,75);
+
+        Vector2 buttonSize = new Vector2(200,50);
+
+
+        Button b = new Button(new Vector2(640 - textSize.x/2, 100 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "W, A, S, D to control");
+        objects.add(b);
+
+        b = new Button(new Vector2(640 - textSize.x/2, 200 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "Don't Let the Goblins touch you");
+        objects.add(b);
+
+        b = new Button(new Vector2(640 - textSize.x/2, 300 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 20, "Left Click on enemies to attack");
+        objects.add(b);
+
+        b = new Button(new Vector2(1000 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Back");
+        b.setOnClick(() ->{
+            SceneManager.setScene(2);
+        });
+        objects.add(b);
+
+        return new GameScene(objects, maps);
+
     }
 
     // Create spritesheet array
@@ -214,6 +257,8 @@ public class Main extends Game {
 
         return (ArrayList<Image>[]) im.toArray(new ArrayList[im.size()]);
     }
+
+
 
     public static void main(String[] args) {
         new Main().begin(args, 1280, 700, "My name jef");
