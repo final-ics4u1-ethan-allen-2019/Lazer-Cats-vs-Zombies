@@ -1,5 +1,18 @@
 package engine;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Rect
+    -----------------------------------------------
+    What it does: Rectangle class for 2d
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import engine.math.Vector2;
 
 

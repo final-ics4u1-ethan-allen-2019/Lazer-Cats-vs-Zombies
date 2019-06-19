@@ -1,5 +1,19 @@
 package engine.input;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: KeyBoardInput
+    -----------------------------------------------
+    What it does: Keeps track of keyboard input
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
+
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

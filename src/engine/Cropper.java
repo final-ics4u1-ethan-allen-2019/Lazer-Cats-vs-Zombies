@@ -1,5 +1,18 @@
 package engine;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Cropper
+    -----------------------------------------------
+    What it does: crops images for easy use
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;

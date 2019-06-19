@@ -1,5 +1,18 @@
 package engine;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Game
+    -----------------------------------------------
+    What it does: Holds basic start up
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import engine.input.KeyboardInput;
 import engine.input.MouseInput;
 import javafx.application.Application;

@@ -1,5 +1,18 @@
 package engine.objects;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Button
+    -----------------------------------------------
+    What it does: Button Class for canvas
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import engine.Draw;
 import engine.Time;
 import engine.input.MouseInput;

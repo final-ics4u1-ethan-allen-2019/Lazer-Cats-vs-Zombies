@@ -1,5 +1,17 @@
 package engine.scenes;
-
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: SceneManager
+    -----------------------------------------------
+    What it does: holds all scenes
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import java.util.ArrayList;
 
 public class SceneManager {

@@ -1,4 +1,17 @@
 package engine.mapping;
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Tile
+    -----------------------------------------------
+    What it does: Keeps a background image and renders it
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 
 import engine.Draw;
 import engine.objects.GameObject;

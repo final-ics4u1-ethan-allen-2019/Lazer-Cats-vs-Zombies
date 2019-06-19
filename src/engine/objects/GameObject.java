@@ -1,5 +1,18 @@
 package engine.objects;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Game Object
+    -----------------------------------------------
+    What it does: Game Object general class for inheritance
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import engine.scripts.Script;
 
 import java.util.ArrayList;

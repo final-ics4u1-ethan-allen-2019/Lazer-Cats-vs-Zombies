@@ -1,5 +1,20 @@
 package engine.math;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Vector 2d
+    -----------------------------------------------
+    What it does: 2d vector with x and y
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
+
+
 public class Vector2 {
 
     public double x;

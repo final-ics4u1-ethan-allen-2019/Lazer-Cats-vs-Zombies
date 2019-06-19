@@ -1,5 +1,20 @@
 package engine.input;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: MouseInput
+    -----------------------------------------------
+    What it does: Keeps track of mouse input
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
+
+
 import engine.math.Vector2;
 import engine.scenes.SceneManager;
 import javafx.event.EventHandler;

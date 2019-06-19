@@ -1,5 +1,17 @@
 package engine.scenes;
-
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Game Scene
+    -----------------------------------------------
+    What it does: standard scene class for canvas
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
 import engine.Game;
 import engine.Rect;
 import engine.objects.GameObject;

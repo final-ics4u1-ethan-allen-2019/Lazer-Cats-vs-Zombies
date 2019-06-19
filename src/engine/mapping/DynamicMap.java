@@ -1,5 +1,20 @@
 package engine.mapping;
 
+/*
+    Project title: Lazer Cats vs Zombies
+    -----------------------------------------------
+    ClassName: Dynamic Map
+    -----------------------------------------------
+    What it does: Map subclas which you can add rows
+    -----------------------------------------------
+    For: ICS4U1 - Holik
+    -----------------------------------------------
+    By: Ethan and Allen
+    -----------------------------------------------
+    Last Edited: June 18th 2019
+ */
+
+
 import engine.Rect;
 import engine.math.Vector2;
 import engine.scenes.GameScene;
