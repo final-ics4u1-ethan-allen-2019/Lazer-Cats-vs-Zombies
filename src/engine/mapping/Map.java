@@ -36,6 +36,7 @@ public class Map extends GameObject {
      *
      * @param map 2d Tile arrray
      * @param mapData url
+     * @see Tile
      */
     public Map(Tile[][] map, String mapData){
         if (map != null) {
@@ -97,6 +98,7 @@ public class Map extends GameObject {
     /** Fills map
      *
      * @param img
+     * @see Image
      */
     public void fill(Image img){
         tileMap = new Tile[tileHeight][tileWidth];
@@ -128,6 +130,7 @@ public class Map extends GameObject {
      *
      * @param vector point vector
      * @return desired tile indices; null if invalid
+     * @see Vector2
      */
     public int[] getCollidedTile(Vector2 vector){
         for (int row = 0; row < tileMap.length; row ++){
@@ -165,6 +168,7 @@ public class Map extends GameObject {
     /** Setter for scene
      *
      * @param scene given scene
+     * @see GameScene
      */
     public void setScene(GameScene scene) {
         this.scene = scene;
@@ -173,6 +177,7 @@ public class Map extends GameObject {
     /** Gets scene
      *
      * @return scene
+     * @see GameScene
      */
     public GameScene getScene() {
         return scene;
@@ -183,6 +188,7 @@ public class Map extends GameObject {
      * @param x tile map col
      * @param y tile map row
      * @return tile
+     * @see Tile
      */
     public Tile getTile(int x, int y){
         return tileMap[y][x];

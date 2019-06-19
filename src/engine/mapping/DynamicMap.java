@@ -98,7 +98,6 @@ public class DynamicMap extends Map {
     /** Adds tile with image
      *
      * @param img image desired
-     *
      */
     public void addTile(Image img){
         checkEmpty();

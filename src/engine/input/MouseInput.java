@@ -20,13 +20,31 @@ import engine.scenes.SceneManager;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/** Mouse Input
+ *
+ */
 public class MouseInput implements EventHandler<MouseEvent> {
 
+    /** x Position of the mouse relative to the screen
+     *
+     */
     public static double x;
+
+    /** y Position of the mouse relative to the screen
+     *
+     */
     public static double y;
 
+    /** Holds whether mouse is pressed or not
+     *
+     */
     public static boolean isPressed;
 
+    /** Called by JavaFX handles mouse events
+     *
+     * @param event The mouse event params handled by JavaFX
+     * @see MouseEvent
+     */
     @Override
     public void handle(MouseEvent event) {
         x = event.getX();
@@ -36,6 +54,11 @@ public class MouseInput implements EventHandler<MouseEvent> {
         else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) isPressed = false;
     }
 
+    /** Gets the position of the mouse according to the world/camera
+     *
+     * @return Vector2 location of the mouse position
+     * @see Vector2
+     */
     public static Vector2 getWorldLoc() {
         Vector2 vector2 = SceneManager.getCurrentGameScene().cameraPosition;
         return vector2.add(x, y);

@@ -155,12 +155,13 @@ public class Main extends Game {
 
         b = new Button(new Vector2((64*16)+32, 600), new Vector2(30, 30), Color.LIGHTGRAY, Color.TRANSPARENT, Color.TRANSPARENT, "GO");
         b.setOnClick(() -> {
-            GameObject obj = new PlayerObject(c.makePlayer());
+            PlayerObject obj = new PlayerObject(c.makePlayer());
 
             obj.x = 1000;
             obj.y = 1000;
 
             SceneManager.setScene(Scenes.GAME.num());
+            obj.player.setOnDeath(() -> setScene(Scenes.END));
             SceneManager.getCurrentGameScene().spawnObject(obj);
         });
         objects.add(b);

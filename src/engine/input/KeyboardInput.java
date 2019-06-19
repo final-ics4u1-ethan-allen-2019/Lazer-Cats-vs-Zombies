@@ -20,11 +20,18 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 
+/** Keyboard Input
+ *
+ */
 public class KeyboardInput implements EventHandler<KeyEvent> {
 
     private static ArrayList<KeyCode> keyPressed = new ArrayList<>();
 
-    // Handles key released and key down
+    /** Handles key events from JavaFX
+     *
+     * @param event The event params given by JavaFX
+     * @see KeyEvent
+     */
     @Override
     public void handle(KeyEvent event) {
         if (event.getEventType().equals(KeyEvent.KEY_PRESSED)) { // Key press event
@@ -35,6 +42,13 @@ public class KeyboardInput implements EventHandler<KeyEvent> {
     }
 
     // Returns true if the key is pressed
+
+    /** Checks if the Key is down
+     *
+     * @param code Code to check if it is down
+     * @return if Key is down
+     * @see KeyCode
+     */
     public static boolean isKeyDown(KeyCode code) {
         return keyPressed.contains(code);
     }

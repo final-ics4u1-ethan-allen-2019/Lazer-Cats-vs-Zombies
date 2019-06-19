@@ -39,6 +39,7 @@ public class Tile extends GameObject {
     /** Constructor
      *
      * @param img takes image
+     * @see Image
      */
     public Tile(Image img){
         super();
@@ -51,6 +52,7 @@ public class Tile extends GameObject {
      *
      * @param img set image
      * @param rect set rect(dimensions)
+     * @see Image
      */
     public Tile(Image img, Rect rect){
         super();
@@ -66,6 +68,7 @@ public class Tile extends GameObject {
      * @param y sets y
      * @param width sets witdh
      * @param height sets height
+     * @see Image
      */
     public Tile(Image img, double x, double y, double width, double height){
         super();
@@ -89,6 +92,7 @@ public class Tile extends GameObject {
     /** Sets image
      *
      * @param img desired image
+     * @see Image
      */
     public void setImg(Image img) {
         this.img = img;
@@ -97,6 +101,7 @@ public class Tile extends GameObject {
     /** Gets rect
      *
      * @return rect
+     * @see Rect
      */
     public Rect getRect(){
         return this.rect;
@@ -105,6 +110,7 @@ public class Tile extends GameObject {
     /** sets map
      *
      * @param map parent map
+     * @see Map
      */
     public void setMap(Map map) {
         this.map = map;

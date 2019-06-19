@@ -26,7 +26,7 @@ public class Player {
     private Leggings leggings;
 
     public int maxHealth = 20050;
-    private int health = 20050;
+    private int health = 50;
 
     private Runnable onDeath;
 

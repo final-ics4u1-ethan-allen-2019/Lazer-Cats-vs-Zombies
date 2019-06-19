@@ -12,6 +12,7 @@ import engine.scenes.SceneManager;
 import engine.scripts.Animator;
 import engine.scripts.Script;
 import engine.scripts.SpriteRenderer;
+import game.Main;
 import game.enemies.Enemy;
 import game.worldobjects.Chest;
 import game.worldobjects.ChestScript;
@@ -227,6 +228,7 @@ public class PlayerScript extends Script {
                 animator.setState(21+2);
             }
         }
+        if (player.getHealth() <= 0) Main.setScene(Main.Scenes.END);
 
         if (KeyboardInput.isKeyDown(KeyCode.E) && !oo) {
             boolean opened = false;
