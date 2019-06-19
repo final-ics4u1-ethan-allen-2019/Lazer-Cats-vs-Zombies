@@ -199,12 +199,16 @@ public class PlayerScript extends Script {
             }
             if (SceneManager.getCurrentGameScene().getMaps() != null) {
                 boolean movable = true;
+
+                //Sees if any of the tiles that the player is colliding with is traversable
                 for (Map map : SceneManager.getCurrentGameScene().getMaps()) {
                     int[] coords = map.getCollidedTile(dVector.x, dVector.y + 32);
                     if (!map.getTile(coords[0], coords[1]).getTraversable()) {
                         movable = false;
                     }
                 }
+
+                //checks if movable and then moves if true
                 if (movable) {
                     parent.x = dVector.x;
                     parent.y = dVector.y;

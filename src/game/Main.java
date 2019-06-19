@@ -168,6 +168,7 @@ public class Main extends Game {
         return new GameScene(objects);
     }
 
+    //creates start screen
     public static GameScene createStartScene(){
         ArrayList<GameObject> objects = new ArrayList<>();
         ArrayList<Map> maps = new ArrayList<>();
@@ -176,27 +177,32 @@ public class Main extends Game {
         Vector2 buttonSize = new Vector2(200,50);
 
 
-        Button b = new Button(new Vector2(640 - 400/2, 200 - 200/2), new Vector2(400,75), Color.WHITE, Color.WHITE, Color.WHITE, 32, "Lazer Cats vs Zombies");
-        objects.add(b);
+        //title
+        Button button = new Button(new Vector2(640 - 400/2, 200 - 200/2), new Vector2(400,75), Color.WHITE, Color.WHITE, Color.WHITE, 32, "Lazer Cats vs Zombies");
+        objects.add(button);
 
-        b = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
-        b.setOnClick(() ->{
+        //play
+        button = new Button(new Vector2(640 - buttonSize.x/2, 350 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "PLAY");
+        button.setOnClick(() ->{
             SceneManager.setScene(Scenes.CHARACTERSELECT.num());
         });
-        objects.add(b);
+        objects.add(button);
 
-        b = new Button(new Vector2(640 - buttonSize.x/2, 250 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "INSTRUCTIONS");
-        b.setOnClick(() ->{
+        //Instructions
+        button = new Button(new Vector2(640 - buttonSize.x/2, 250 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "INSTRUCTIONS");
+        button.setOnClick(() ->{
             SceneManager.setScene(Scenes.INSTRUCTIONS.num());
         });
-        objects.add(b);
+        objects.add(button);
 
+        //Background
         maps.add(MapGenerator.generateDynamicMap("src/maps/Blacked.txt", 32, 32));
 
         GameScene scene = new GameScene(objects, maps);
         return scene;
     }
 
+    //makes instruction scene
     private static GameScene createIntructionScene(){
         ArrayList<GameObject> objects = new ArrayList<>();
         ArrayList<Map> maps = new ArrayList<>();
@@ -207,6 +213,7 @@ public class Main extends Game {
         Vector2 buttonSize = new Vector2(200,50);
 
 
+        //All text
         Button b = new Button(new Vector2(640 - textSize.x/2, 100 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 32, "W, A, S, D to control");
         objects.add(b);
 
@@ -216,6 +223,7 @@ public class Main extends Game {
         b = new Button(new Vector2(640 - textSize.x/2, 300 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 32, "Left Click on enemies to attack");
         objects.add(b);
 
+        //Back Button
         b = new Button(new Vector2(1000 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Back");
         b.setOnClick(() ->{
             SceneManager.setScene(Scenes.MAIN_MENU.num());
@@ -226,7 +234,9 @@ public class Main extends Game {
 
     }
 
+    //creates end scene
     private static GameScene createEndScene(){
+
         ArrayList<GameObject> objects = new ArrayList<>();
         ArrayList<Map> maps = new ArrayList<>();
 
@@ -235,25 +245,31 @@ public class Main extends Game {
 
         Vector2 buttonSize = new Vector2(200,50);
 
-
+        //Gameover
         Button b = new Button(new Vector2(640 - textSize.x/2, 200 - textSize.y/2), textSize, Color.WHITE, Color.WHITE, Color.WHITE, 56, "You Ded");
         objects.add(b);
 
-
+        //Play again
         b = new Button(new Vector2(400 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Play Again");
         b.setOnClick(() ->{
+
+            //inits player
             GameObject obj = new PlayerObject(c.makePlayer());
 
+            //start point
             obj.x = 1000;
             obj.y = 1000;
 
+            //changes scene
             SceneManager.setScene(Scenes.GAME.num());
             SceneManager.getCurrentGameScene().spawnObject(obj);
         });
         objects.add(b);
 
+        //Back
         b = new Button(new Vector2(1000 - buttonSize.x/2, 600 - buttonSize.y/2), buttonSize, Color.GREENYELLOW, Color.RED, Color.DEEPSKYBLUE, 20, "Back");
         b.setOnClick(() ->{
+            //changes scene
             SceneManager.setScene(Scenes.MAIN_MENU.num());
         });
         objects.add(b);
