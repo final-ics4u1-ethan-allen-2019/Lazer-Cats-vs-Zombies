@@ -25,7 +25,8 @@ public class Player {
     private ChestPlate chestPlate;
     private Leggings leggings;
 
-    private int health = 50;
+    public int maxHealth = 20050;
+    private int health = 20050;
 
     private Runnable onDeath;
 

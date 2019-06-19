@@ -16,6 +16,7 @@ import game.enemies.Enemy;
 import game.worldobjects.Chest;
 import game.worldobjects.ChestScript;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -110,7 +111,7 @@ public class PlayerScript extends Script {
                                 if (object instanceof Enemy) {
                                     Enemy enemy = (Enemy) object;
                                     double hyp1 = Math.hypot(parent.x - enemy.x, parent.y - enemy.y);
-                                    double hyp2 = MouseInput.getWorldLoc().subtract(enemy.x + 32, enemy.y + 32).hypot();
+                                    double hyp2 = MouseInput.getWorldLoc().subtract(enemy.x, enemy.y).hypot();
 
                                     Draw.drawText(hyp1 + "/" + hyp2, 0, 50, true);
 
@@ -173,28 +174,28 @@ public class PlayerScript extends Script {
                 for (Animator animator : animators) {
                     animator.setState(8);
                 }
-                dVector.y -= 200 * Time.deltaTime;
+                dVector.y -= 200 * Time.deltaTime * (KeyboardInput.isKeyDown(KeyCode.SHIFT) ? 20 : 1);
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.S) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(10);
                 }
-                dVector.y += 200 * Time.deltaTime;
+                dVector.y += 200 * Time.deltaTime * (KeyboardInput.isKeyDown(KeyCode.SHIFT) ? 20 : 1);
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.A) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(9);
                 }
-                dVector.x -= 200 * Time.deltaTime;
+                dVector.x -= 200 * Time.deltaTime * (KeyboardInput.isKeyDown(KeyCode.SHIFT) ? 20 : 1);
                 moving = true;
             }
             if (KeyboardInput.isKeyDown(KeyCode.D) && !attacking) {
                 for (Animator animator : animators) {
                     animator.setState(11);
                 }
-                dVector.x += 200 * Time.deltaTime;
+                dVector.x += 200 * Time.deltaTime * (KeyboardInput.isKeyDown(KeyCode.SHIFT) ? 20 : 1);
                 moving = true;
             }
             if (SceneManager.getCurrentGameScene().getMaps() != null) {
@@ -224,15 +225,21 @@ public class PlayerScript extends Script {
         }
 
         if (KeyboardInput.isKeyDown(KeyCode.E) && !oo) {
+            boolean opened = false;
             for (GameObject object : SceneManager.getCurrentGameScene().getActive()) {
                 if (object instanceof Chest) {
-                    for (Script script : object.getScripts()) {
+                    if (new Vector2(object.x, object.y).subtract(parent.x, parent.y).hypot() < 40) for (Script script : object.getScripts()) {
                         if (script instanceof ChestScript) {
+                            opened = true;
                             if (o) ((ChestScript) script).open((PlayerObject) parent);
                             else ((ChestScript) script).close();
                         }
                     }
                 }
+            }
+            if (!opened) {
+                if (o) player.getInventory().open((PlayerObject) parent);
+                else player.getInventory().close();
             }
             o = !o;
             oo = true;
@@ -266,6 +273,14 @@ public class PlayerScript extends Script {
     public void render() {
         //Draw.drawText(MouseInput.getWorldLoc().x + "/" + MouseInput.getWorldLoc().y + "", 0, 20, true);
         Draw.drawText(parent.x + "/" + parent.y, 0, 20, true);
+    }
+
+    @Override
+    public void lateRender() {
+        Draw.setFill(Color.color(0,0,0,0.4));
+        Draw.rect(10, 10, 400, 20, true);
+        Draw.setFill(Color.RED);
+        Draw.rect(15, 15, 393*(player.getHealth()/(float) player.maxHealth), 10, true);
     }
 
 }

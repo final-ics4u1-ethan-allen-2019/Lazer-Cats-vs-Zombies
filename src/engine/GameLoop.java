@@ -19,7 +19,11 @@ public class GameLoop extends AnimationTimer {
             scene.update();
 
             // Scene draw
-            if (scene == SceneManager.getCurrentGameScene()) scene.render();
+            if (scene == SceneManager.getCurrentGameScene()) {
+                scene.render();
+                scene.lateRender();
+            }
+
         }
     }
 

@@ -21,8 +21,8 @@ public class Enemy extends GameObject {
     public Enemy(String file, int activeRange, int disengageRange, int damage) {
         super();
 
-        this.x = (int)(1000*Math.random());
-        this.y = (int)(1000*Math.random());
+        this.x = (int)(1000*Math.random()) + 1000;
+        this.y = (int)(1000*Math.random()) + 1000;
         this.file = file;
         this.activeRange = activeRange;
         this.disengageRange = disengageRange;

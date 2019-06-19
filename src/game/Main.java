@@ -67,7 +67,7 @@ public class Main extends Game {
 
         SceneManager.addScene(createEndScene());
 
-        SceneManager.setScene(2);
+        setScene(Scenes.MAIN_MENU);
     }
 
     private static GameScene createCharacterSelect() {
@@ -303,7 +303,9 @@ public class Main extends Game {
         return (ArrayList<Image>[]) im.toArray(new ArrayList[im.size()]);
     }
 
-
+    public static void setScene(Scenes scene) {
+        SceneManager.setScene(scene.num());
+    }
 
     public static void main(String[] args) {
         new Main().begin(args, 1280, 700, "My name jef");

@@ -26,4 +26,8 @@ public class Script {
 
     }
 
+    public void lateRender() {
+
+    }
+
 }

@@ -7,6 +7,7 @@ import engine.mapping.Map;
 import engine.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 public class GameScene {
 
@@ -44,32 +45,33 @@ public class GameScene {
     }
 
     public void onLoad() {
-        for (GameObject object : active) {
-            object.load();
-        }
+        active.forEach(GameObject::load);
     }
 
     public void update() {
+        try {
+            active.forEach(GameObject::update);
+        } catch (ConcurrentModificationException ignored) {
+            update();
+        }
         active.addAll(spawnLater);
         spawnLater = new ArrayList<>();
-        for (GameObject object : active) {
-            object.update();
-        }
         camera.x = cameraPosition.x;
         camera.y = cameraPosition.y;
         camera.updateRect();
     }
 
     public void render() {
-        
         if (maps != null) {
             for (Map map : maps) {
                 map.render();
             }
         }
-        for (GameObject object : active) {
-            object.render();
-        }
+        active.forEach(GameObject::render);
+    }
+
+    public void lateRender() {
+        active.forEach(GameObject::lateRender);
     }
 
     public void spawnObject(GameObject object) {
