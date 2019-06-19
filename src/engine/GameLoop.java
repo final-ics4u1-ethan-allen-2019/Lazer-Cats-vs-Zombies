@@ -17,8 +17,15 @@ import engine.scenes.GameScene;
 import engine.scenes.SceneManager;
 import javafx.animation.AnimationTimer;
 
+/** Loops game
+ * @see javafx.animation.AnimationTimer
+ */
 public class GameLoop extends AnimationTimer {
 
+    /** logic for game loop
+     *
+     * @param now current time
+     */
     @Override
     public void handle(long now) {
         Time.updateTime(now);

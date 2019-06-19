@@ -14,11 +14,18 @@ package engine;
     Last Edited: June 18th 2019
  */
 
+/** Gets time
+ *
+ */
 public class Time {
 
     public static double deltaTime = 0, fps = 0;
     private static long lastTime = 0, startTime = 0;
 
+    /** Updates time
+     *
+     * @param nanoTime current time
+     */
     public static void updateTime(long nanoTime) {
         if (startTime == 0) {
             lastTime = nanoTime;
@@ -31,6 +38,10 @@ public class Time {
         }
     }
 
+    /** Gets time elapsed
+     *
+     * @return current time
+     */
     public static long getTotalTime() {
         return lastTime - startTime;
     }

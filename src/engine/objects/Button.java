@@ -20,6 +20,9 @@ import engine.math.Vector2;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+/** Button Class
+ *
+ */
 public class Button extends GameObject {
 
     private Vector2 size;
@@ -35,6 +38,15 @@ public class Button extends GameObject {
 
     private double fontSize;
 
+    /** Constructor
+     *
+     * @param pos desired position
+     * @param size desired size
+     * @param hover desired hover color
+     * @param pressed desired press color
+     * @param color desired default color
+     * @param text desired text
+     */
     public Button(Vector2 pos, Vector2 size, Color hover, Color pressed, Color color, String text) {
         super();
         this.size = size;
@@ -48,6 +60,16 @@ public class Button extends GameObject {
         fontSize = 10;
     }
 
+    /** Constructor
+     *
+     * @param pos desired position
+     * @param size desired button size
+     * @param hover desired hover color
+     * @param pressed desired pressed color
+     * @param color desired color
+     * @param fontSize desired font size
+     * @param text desired text
+     */
     public Button(Vector2 pos, Vector2 size, Color hover, Color pressed, Color color, double fontSize, String text) {
         super();
         this.size = size;
@@ -61,24 +83,49 @@ public class Button extends GameObject {
         this.fontSize = fontSize;
     }
 
+    /** Sets on hover
+     *
+     * @param runnable new runnable logic
+     * @see Runnable
+     */
     public void setOnHover(Runnable runnable) {
         this.onHover = runnable;
     }
 
+    /** Sets on press
+     *
+     * @param runnable new runnable logic
+     * @see Runnable
+     */
     public void setOnPress(Runnable runnable) {
         this.onPress = runnable;
     }
 
+    /** Sets on release
+     *
+     * @param onRelease new runnable logic
+     * @see Runnable
+     */
     public void setOnRelease(Runnable onRelease) {
         this.onRelease = onRelease;
     }
 
+    /** Sets on click
+     *
+     * @param runnable new runnable logic
+     * @see Runnable
+     */
     public void setOnClick(Runnable runnable) {
         this.onClick = runnable;
     }
 
+    /** Updates button
+     *
+     */
     @Override
     public void update() {
+
+        //checks collision
         if (MouseInput.x >= this.x && MouseInput.y >= this.y && MouseInput.x <= this.x+size.x && MouseInput.y <= this.y+size.y) {
             if (isHovering) {
                 if (MouseInput.isPressed) {
@@ -104,8 +151,13 @@ public class Button extends GameObject {
         }
     }
 
+    /** Renders button
+     *
+     */
     @Override
     public void render() {
+
+        //changes color
         if (isPressing) {
             Draw.setFill(pressed);
         } else if (isHovering) {

@@ -21,6 +21,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 
+/** Standard Game
+ * @see javafx.application.Application
+ */
 public class Game extends Application {
 
     private static Scene scene;
@@ -112,13 +115,19 @@ public class Game extends Application {
 
         Group root = new Group();
 
+        //adds canvas
         Canvas canvas = new Canvas(width, height);
         root.getChildren().add(canvas);
 
+        //new scene
         scene = new Scene(root);
+
+        //inputs
         KeyboardInput keyboardInput = new KeyboardInput();
         scene.setOnKeyPressed(keyboardInput);
         scene.setOnKeyReleased(keyboardInput);
+
+        //mouse input
         MouseInput mouseInput = new MouseInput();
         scene.setOnMouseMoved(mouseInput);
         scene.setOnMouseDragged(mouseInput);

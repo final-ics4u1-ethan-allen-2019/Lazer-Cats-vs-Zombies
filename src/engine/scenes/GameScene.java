@@ -21,7 +21,11 @@ import engine.math.Vector2;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
+/** Standard game scene for canvas
+ *
+ */
 public class GameScene {
+
 
     private ArrayList<GameObject> inactive;
 
@@ -35,9 +39,19 @@ public class GameScene {
 
     public Rect camera = new Rect(cameraPosition, new Vector2(cameraPosition.x + Game.getWidth(), cameraPosition.y + Game.getHeight()));
 
+    /** Constructor
+     *
+     * @param objects game objects
+     */
     public GameScene(ArrayList<GameObject> objects) {
         inactive = objects;
     }
+
+    /** Constructor
+     *
+     * @param objects game objects
+     * @param maps1 maps
+     */
     public GameScene(ArrayList<GameObject> objects, ArrayList<Map> maps1) {
         inactive = objects;
         //System.out.println(maps1.size());
@@ -51,15 +65,22 @@ public class GameScene {
         active = null;
     }
 
+
     void load() {
         active = (ArrayList<GameObject>) inactive.clone();
         onLoad();
     }
 
+    /** Loads scene
+     *
+     */
     public void onLoad() {
         active.forEach(GameObject::load);
     }
 
+    /** Updates Scene
+     *
+     */
     public void update() {
         try {
             active.forEach(GameObject::update);
@@ -68,11 +89,16 @@ public class GameScene {
         }
         active.addAll(spawnLater);
         spawnLater = new ArrayList<>();
+
+        //updates cam pos
         camera.x = cameraPosition.x;
         camera.y = cameraPosition.y;
         camera.updateRect();
     }
 
+    /** Renders all objects and maps
+     *
+     */
     public void render() {
         if (maps != null) {
             for (Map map : maps) {
@@ -82,19 +108,34 @@ public class GameScene {
         active.forEach(GameObject::render);
     }
 
+    /** Delayed rendering
+     *
+     */
     public void lateRender() {
         active.forEach(GameObject::lateRender);
     }
 
+    /** Spawns object onto scene
+     *
+     * @param object desired object
+     */
     public void spawnObject(GameObject object) {
         object.load();
         spawnLater.add(object);
     }
 
+    /** Gets active objects
+     *
+     * @return active objects
+     */
     public ArrayList<GameObject> getActive() {
         return active;
     }
 
+    /** Gets maps
+     *
+     * @return maps
+     */
     public ArrayList<Map> getMaps() {
         return maps;
     }
