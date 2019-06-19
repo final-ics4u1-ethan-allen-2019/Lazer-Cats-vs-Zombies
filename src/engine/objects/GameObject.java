@@ -33,21 +33,19 @@ public class GameObject {
     }
 
     public void load() {
-        for (Script script : scripts) {
-            script.load();
-        }
+        scripts.forEach(Script::load);
     }
 
     public void update() {
-        for (Script script : scripts) {
-            script.update();
-        }
+        scripts.forEach(Script::update);
     }
 
     public void render() {
-        for (Script script : scripts) {
-            script.render();
-        }
+        scripts.forEach(Script::render);
+    }
+
+    public void lateRender() {
+        scripts.forEach((Script::lateRender));
     }
 
     public ArrayList<Script> getScripts() {
